@@ -1,4 +1,4 @@
-package dev.evanishyn.entities.employee;
+package dev.evanishyn.entities;
 
 public class Employee{
 
