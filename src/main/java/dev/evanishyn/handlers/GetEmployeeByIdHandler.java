@@ -12,7 +12,7 @@ public class GetEmployeeByIdHandler implements Handler {
     @Override
     public void handle(@NotNull Context ctx) throws Exception{
         int id = Integer.parseInt(ctx.pathParam("id"));
-        Employee employee = App.employeeService.retrieveEmployeeById(id);
+        Employee employee = App.employeeService.getEmployeeById(id);
         Gson gson = new Gson();
         String json = gson.toJson(employee);
         ctx.result(json);

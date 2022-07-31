@@ -3,6 +3,9 @@ package dev.evanishyn.services;
 import dev.evanishyn.daos.employee_daos.EmployeeDAO;
 import dev.evanishyn.entities.Employee;
 
+import java.util.List;
+import java.util.Map;
+
 public class EmployeeServiceImpl implements EmployeeService{
 
     private EmployeeDAO employeeDAO;
@@ -36,9 +39,17 @@ public class EmployeeServiceImpl implements EmployeeService{
 
 
     @Override
-    public Employee retrieveEmployeeById(int id){
+    public Employee getEmployeeById(int id){
         return this.employeeDAO.getEmployeeById(id);
     }
+
+    @Override
+    public List<Employee> getEmployeeList(){
+        return employeeDAO.getEmployeeList();
+    }
+//    public Map<Integer, Employee> getEmployeeList(){
+//        return employeeDAO.getEmployeeList();
+//    }
 
     @Override
     public Employee updateEmployeeInfo(Employee employee){

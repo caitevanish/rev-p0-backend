@@ -2,6 +2,9 @@ package dev.evanishyn.services;
 
 import dev.evanishyn.entities.Employee;
 
+import java.util.List;
+import java.util.Map;
+
 //    Business Rules:
 //    All expenses have a single employee as the issuer
 //    Expenses start as pending and must then be approved or denied
@@ -12,7 +15,10 @@ public interface EmployeeService {
 
     Employee registerEmployeeAccount(Employee employee);
 
-    Employee retrieveEmployeeById(int id);
+    Employee getEmployeeById(int id);
+
+    List<Employee> getEmployeeList();
+//    Map<Integer, Employee> getEmployeeList();
 
     Employee updateEmployeeInfo(Employee employee);
 

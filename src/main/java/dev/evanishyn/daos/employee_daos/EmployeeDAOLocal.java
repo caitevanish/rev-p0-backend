@@ -36,7 +36,8 @@ public class EmployeeDAOLocal implements EmployeeDAO{
     }
 
     @Override
-    public List<Employee> getAllEmployees() {
+//    public Map<Integer, Employee> getEmployeeList() {
+    public List<Employee> getEmployeeList() {
         //why returning null? Doesn't it return ListArray of all employees?
         return null;
     }

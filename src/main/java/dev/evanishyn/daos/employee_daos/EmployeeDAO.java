@@ -3,6 +3,7 @@ package dev.evanishyn.daos.employee_daos;
 import dev.evanishyn.entities.Employee;
 
 import java.util.List;
+import java.util.Map;
 
 public interface EmployeeDAO {
 
@@ -11,7 +12,9 @@ public interface EmployeeDAO {
 
     //get
     Employee getEmployeeById(int id);
-    List<Employee> getAllEmployees();
+
+    List<Employee> getEmployeeList();
+//    Map<Integer, Employee> getEmployeeList();
 
     //put
     Employee updateEmployeeInfo(Employee employee);

@@ -22,6 +22,8 @@ public class RegisterEmployeeHandler implements Handler {
         ctx.status(201);        //checking for a 201 status
         ctx.result(employeeJson);       //returning employee Json string to page
 
+//        App.employeeList.add(registeredEmployee);
+
     }
 
 //    public boolean containsIllegalSymbol(Employee employee){
