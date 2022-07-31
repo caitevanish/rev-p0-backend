@@ -1,8 +1,7 @@
 package dev.evanishyn.services;
 
-import dev.evanishyn.daos.EmployeeDAO;
+import dev.evanishyn.daos.employee_daos.EmployeeDAO;
 import dev.evanishyn.entities.Employee;
-import dev.evanishyn.handlers.RegisterEmployeeHandler;
 
 public class EmployeeServiceImpl implements EmployeeService{
 
@@ -16,6 +15,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     public Employee registerEmployeeAccount(Employee employee){
 
         if(employee.getfName().length() == 0 || employee.getlName().length() == 0){
+//        if(employee.getfName().contains(null) || employee.getlName().contains(null)){
             throw new RuntimeException("Employee's first and/or last name cannot be empty.");
         }
 //        if (employee.containsIllegalSymbol(employee.getEmail()) == true){   //check if email has no extra special characters
@@ -24,23 +24,30 @@ public class EmployeeServiceImpl implements EmployeeService{
         if(employee.getEmail().length() == 0 || employee.getPhoneNumber().length() == 0){
             throw new RuntimeException("You must include a phone number and email address.");
         }
-        if(employee.getPassword().length() < 6){
-            throw new RuntimeException("Your password must be longer than 6 characters.");
+        if(employee.getPassword().length() <= 5){
+            throw new RuntimeException("Your password must be 6 or more characters long.");
         }
 
-        Employee newEmployeeInfo = this.employeeDAO.createEmployee(employee);
+//        Employee newEmployeeInfo =    //??
 
-        return newEmployeeInfo;
+        return this.employeeDAO.createEmployee(employee);
     }
 
 
-    @Override
-    Employee retrieveEmployeeById(int id);
 
     @Override
-    Employee updateEmployeeInfo(Employee employee);
+    public Employee retrieveEmployeeById(int id){
+        return this.employeeDAO.getEmployeeById(id);
+    }
 
     @Override
-    boolean deleteEmployeeAccount(int id);
+    public Employee updateEmployeeInfo(Employee employee){
+        return null;
+    }
+
+    @Override
+    public boolean deleteEmployeeAccount(int id){
+        return false;
+    }
 
 }

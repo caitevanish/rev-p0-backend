@@ -1,4 +1,4 @@
-package dev.evanishyn.daos;
+package dev.evanishyn.daos.employee_daos;
 
 import dev.evanishyn.entities.Employee;
 
@@ -55,7 +55,8 @@ public class EmployeeDAOLocal implements EmployeeDAO{
     public boolean deleteEmployee(int id) {
         //Create a variable to
         Employee exEmployee = employeeTable.remove(id);
-        return exEmployee == null ? false : true;
+        return exEmployee != null;
+//        return exEmployee == null ? false : true;
 
     }
 

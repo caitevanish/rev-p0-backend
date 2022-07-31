@@ -20,7 +20,7 @@ public class RegisterEmployeeHandler implements Handler {
         Employee registeredEmployee = App.employeeService.registerEmployeeAccount(employee);    //create registered employee from app
         String employeeJson = gson.toJson(registeredEmployee);  //create json string from regEmp info
         ctx.status(201);        //checking for a 201 status
-        ctx.result(employeeJson);       //returning employee Json string
+        ctx.result(employeeJson);       //returning employee Json string to page
 
     }
 

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.evanishyn.daotests.EmployeeDAOtests" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-07-31T21:37:01" hostname="LAPTOP-LENCIJ1Q" time="0.084">
+  <properties/>
+  <testcase name="create_employee_test()" classname="dev.evanishyn.daotests.EmployeeDAOtests" time="0.084"/>
+  <system-out><![CDATA[Employee{id=1, fName='', lName='Evanishyn', email='ce@email.com', password='12345', phoneNumber='4805558445', accountBalance=0}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
