@@ -25,6 +25,8 @@ public class App {
         //Add a 'try'-with statement
 
 
+
+        //-----------Employee-----------
         RegisterEmployeeHandler registerEmployeeHandler = new RegisterEmployeeHandler();
         GetEmployeeByIdHandler getEmployeeByIdHandler = new GetEmployeeByIdHandler();
 //        GetEmployeeListHandler getEmployeeListHandler = new GetEmployeeListHandler();
@@ -32,11 +34,14 @@ public class App {
         DeleteEmployeeHandler deleteEmployeeHandler = new DeleteEmployeeHandler();
 
 
-        app.post("/registeremployee", registerEmployeeHandler);
+        app.post("/employee", registerEmployeeHandler);
         app.get("/employee/{id}", getEmployeeByIdHandler);
 //        app.get("/employees", getEmployeeListHandler);
         //update
         app.delete("/employee/{id}", deleteEmployeeHandler);
+
+
+        //-----------Expense-----------
 
 
 

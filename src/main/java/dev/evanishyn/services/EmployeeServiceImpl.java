@@ -32,12 +32,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 //        if (employee.containsIllegalSymbol(employee.getEmail()) == true){   //check if email has no extra special characters
 //            throw new RuntimeException("Email must not contain any special symbols.")
 //        }
-        if(employee.getEmail().length() == 0 || employee.getPhoneNumber().length() == 0){
-            throw new RuntimeException("You must include a phone number and email address.");
-        }
-        if(employee.getPassword().length() <= 5){
-            throw new RuntimeException("Your password must be 6 or more characters long.");
-        }
 
 //        Employee newEmployeeInfo =    //??
 
