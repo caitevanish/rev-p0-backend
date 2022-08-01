@@ -20,6 +20,6 @@ public interface EmployeeDAO {
     Employee updateEmployeeInfo(Employee employee);
 
     //delete
-    boolean deleteEmployee(int id);
+    boolean deleteEmployeeAccount(int id);
 
 }

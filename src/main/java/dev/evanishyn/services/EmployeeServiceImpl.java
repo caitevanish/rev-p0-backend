@@ -6,6 +6,12 @@ import dev.evanishyn.entities.Employee;
 import java.util.List;
 import java.util.Map;
 
+//---------------------------------------------------------------------------------------
+//TO-DO:
+// [ ] Make a helper function to validate the new/update employee account info methods.
+// - Copy and paste code block in register employee account and call helper function in register and update
+//---------------------------------------------------------------------------------------
+
 public class EmployeeServiceImpl implements EmployeeService{
 
     private EmployeeDAO employeeDAO;
@@ -14,6 +20,8 @@ public class EmployeeServiceImpl implements EmployeeService{
         this.employeeDAO = employeeDAO;
     }
 
+
+    //-----------POST-----------
     @Override
     public Employee registerEmployeeAccount(Employee employee){
 
@@ -37,7 +45,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
 
-
+    //-----------GET-----------
     @Override
     public Employee getEmployeeById(int id){
         return this.employeeDAO.getEmployeeById(id);
@@ -51,14 +59,22 @@ public class EmployeeServiceImpl implements EmployeeService{
 //        return employeeDAO.getEmployeeList();
 //    }
 
-    @Override
-    public Employee updateEmployeeInfo(Employee employee){
-        return null;
-    }
+    //-----------PUT-----------
 
     @Override
+    public Employee updateEmployeeInfo(Employee employee){
+        //use helper function to validate new info
+
+    return null;
+//        return this.employeeDAO.updateEmployeeInfo(Employee employee);
+    }
+
+
+    //-----------DELETE-----------
+    @Override
     public boolean deleteEmployeeAccount(int id){
-        return false;
+//        boolean isSuccessful = this.employeeDAO.deleteEmployeeAccount(id);
+        return this.employeeDAO.deleteEmployeeAccount(id);
     }
 
 }

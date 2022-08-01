@@ -2,6 +2,7 @@ package dev.evanishyn.app;
 
 import dev.evanishyn.daos.employee_daos.EmployeeDAOLocal;
 import dev.evanishyn.entities.Employee;
+import dev.evanishyn.handlers.DeleteEmployeeHandler;
 import dev.evanishyn.handlers.GetEmployeeByIdHandler;
 import dev.evanishyn.handlers.GetEmployeeListHandler;
 import dev.evanishyn.handlers.RegisterEmployeeHandler;
@@ -27,11 +28,15 @@ public class App {
         RegisterEmployeeHandler registerEmployeeHandler = new RegisterEmployeeHandler();
         GetEmployeeByIdHandler getEmployeeByIdHandler = new GetEmployeeByIdHandler();
 //        GetEmployeeListHandler getEmployeeListHandler = new GetEmployeeListHandler();
+        //update
+        DeleteEmployeeHandler deleteEmployeeHandler = new DeleteEmployeeHandler();
 
 
         app.post("/registeremployee", registerEmployeeHandler);
         app.get("/employee/{id}", getEmployeeByIdHandler);
 //        app.get("/employees", getEmployeeListHandler);
+        //update
+        app.delete("/employee/{id}", deleteEmployeeHandler);
 
 
 

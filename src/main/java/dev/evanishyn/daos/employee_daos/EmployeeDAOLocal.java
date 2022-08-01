@@ -53,7 +53,7 @@ public class EmployeeDAOLocal implements EmployeeDAO{
 
     //-----------DELETE-----------
     @Override
-    public boolean deleteEmployee(int id) {
+    public boolean deleteEmployeeAccount(int id) {
         //Create a variable to
         Employee exEmployee = employeeTable.remove(id);
         return exEmployee != null;
