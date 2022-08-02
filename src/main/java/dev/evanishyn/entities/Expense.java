@@ -1,23 +1,23 @@
 package dev.evanishyn.entities;
 
 import dev.evanishyn.utilities.Status;
-import dev.evanishyn.utilities.Type;
+import dev.evanishyn.utilities.Category;
 
 public class Expense {
 
     private int id;
-    private Employee employee;  //admin1
+    private int employeeId;  //admin1
     private double amount;
     private String description;
-    private Type type;  //expense.getType().name()   (.name == toString() for enums)
+    private Category category;  //expense.getType().name()   (.name == toString() for enums)
     private Status status;
 
-    public Expense(int id, Employee employee, double amount, String description, Type type, Status status) {
+    public Expense(int id, int employeeId, double amount, String description, Category category, Status status) {
         this.id = id;
-        this.employee = employee;
+        this.employeeId = employeeId;
         this.amount = amount;
         this.description = description;
-        this.type = type;
+        this.category = category;
         this.status = status;
     }
 
@@ -29,12 +29,12 @@ public class Expense {
         this.id = id;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public int getEmployee() {
+        return employeeId;
     }
 
     public void setEmployee(Employee employee) {
-        this.employee = employee;
+        this.employeeId = employeeId;
     }
 
     public double getAmount() {
@@ -53,12 +53,12 @@ public class Expense {
         this.description = description;
     }
 
-    public Type getType() {
-        return type;
+    public Category getType() {
+        return category;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setType(Category category) {
+        this.category = category;
     }
 
     public Status getStatus() {
@@ -73,10 +73,10 @@ public class Expense {
     public String toString() {
         return "Expense{" +
                 "id=" + id +
-                ", employee=" + employee +
+                ", employee=" + employeeId +
                 ", amount=" + amount +
                 ", description='" + description + '\'' +
-                ", type=" + type +
+                ", type=" + category +
                 ", status=" + status +
                 '}';
     }

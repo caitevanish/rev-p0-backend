@@ -2,6 +2,8 @@ package dev.evanishyn.daos.expenses_daos;
 
 import dev.evanishyn.entities.Expense;
 
+import java.util.Map;
+
 public interface ExpenseDAO {
 
 
@@ -12,7 +14,7 @@ public interface ExpenseDAO {
 
     //-----get [x3]-----
     // 1] get expense report (aka all expense claims)
-    Expense getAllClaims();
+    Map<Integer,Expense> getAllClaims();
 
 
     // 2] get all pending claim reimbursements

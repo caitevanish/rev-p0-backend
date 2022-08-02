@@ -10,8 +10,7 @@ import java.util.Map;
 
 public class ExpenseDAOlocal implements ExpenseDAO{
 
-    private Map<Integer, Expense> expenseMap = new HashMap<>();
-    private EmployeeDAO employeeDAO = new EmployeeDAOLocal();
+    private Map<Integer, Expense> expenseTable = new HashMap<>();
     private int idMaker = 1;
 
     //-----------POST-----------
@@ -19,7 +18,7 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     public Expense createClaim(Expense expense) {
         expense.setId(idMaker);
         idMaker++;
-        expenseMap.put(expense.getId(), expense);
+        expenseTable.put(expense.getId(), expense);
         System.out.println(expense);
         return expense;
     }
@@ -27,8 +26,8 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     //-----------GET-----------
     // 1] get expense report (aka all expense claims)
     @Override
-    public Expense getAllClaims(){
-        return null;
+    public Map<Integer,Expense> getAllClaims(){
+        return this.expenseTable;
     }
 
 
@@ -41,14 +40,15 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     // 3] get claims by id
     @Override
     public Expense getClaimById(int id){
-        return null;
+        return expenseTable.get(id);
     }
 
     //-----------PUT-----------
     // update expense
     @Override
     public Expense updateClaimInformation(Expense expense){
-        return null;
+        expenseTable.put(expense.getId(), expense);
+        return expense;
     }
 
     //-----------PATCH-----------
@@ -59,7 +59,8 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     //-----------DELETE-----------
     @Override
     public boolean deleteClaimById(int id){
-        return false;
+        Expense expense = expenseTable.remove(id);
+        return expense != null;
     }
 
 }
