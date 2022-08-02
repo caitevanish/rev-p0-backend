@@ -25,12 +25,42 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     }
 
     //-----------GET-----------
+    // 1] get expense report (aka all expense claims)
+    @Override
+    public Expense getAllClaims(){
+        return null;
+    }
+
+
+    // 2] get all pending claim reimbursements
+    @Override
+    public Expense getPendingClaims(){
+        return null;
+    }
+
+    // 3] get claims by id
+    @Override
+    public Expense getClaimById(int id){
+        return null;
+    }
 
     //-----------PUT-----------
+    // update expense
+    @Override
+    public Expense updateClaimInformation(Expense expense){
+        return null;
+    }
 
     //-----------PATCH-----------
+    // 1] approve
+    // 2] deny
+
 
     //-----------DELETE-----------
+    @Override
+    public boolean deleteClaimById(int id){
+        return false;
+    }
 
 }
 

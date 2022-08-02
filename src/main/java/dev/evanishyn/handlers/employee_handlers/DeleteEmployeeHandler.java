@@ -1,4 +1,4 @@
-package dev.evanishyn.handlers;
+package dev.evanishyn.handlers.employee_handlers;
 
 import dev.evanishyn.app.App;
 import io.javalin.http.Context;

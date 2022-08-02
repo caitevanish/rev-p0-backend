@@ -10,18 +10,23 @@ public interface ExpenseDAO {
     Expense createClaim(Expense expense);
 
 
-
-
     //-----get [x3]-----
     // 1] get expense report (aka all expense claims)
+    Expense getAllClaims();
+
+
     // 2] get all pending claim reimbursements
+    Expense getPendingClaims();
+
+
     // 3] get claims by id
+    Expense getClaimById(int id);
 
 
 
     //-----put-----
     // update expense
-
+    Expense updateClaimInformation(Expense expense);
 
 
     //-----patch [x2]-----
@@ -31,6 +36,7 @@ public interface ExpenseDAO {
 
 
     //-----delete-----
+    boolean deleteClaimById(int id);
 
 
 

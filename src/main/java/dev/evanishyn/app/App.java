@@ -2,18 +2,14 @@ package dev.evanishyn.app;
 
 import dev.evanishyn.daos.employee_daos.EmployeeDAOLocal;
 import dev.evanishyn.daos.expenses_daos.ExpenseDAOlocal;
-import dev.evanishyn.entities.Employee;
-import dev.evanishyn.entities.Expense;
-import dev.evanishyn.handlers.DeleteEmployeeHandler;
-import dev.evanishyn.handlers.GetEmployeeByIdHandler;
-import dev.evanishyn.handlers.GetEmployeeListHandler;
-import dev.evanishyn.handlers.RegisterEmployeeHandler;
+import dev.evanishyn.handlers.employee_handlers.DeleteEmployeeHandler;
+import dev.evanishyn.handlers.employee_handlers.GetEmployeeByIdHandler;
+import dev.evanishyn.handlers.employee_handlers.RegisterEmployeeHandler;
 import dev.evanishyn.services.EmployeeService;
 import dev.evanishyn.services.EmployeeServiceImpl;
+import dev.evanishyn.services.ExpenseService;
+import dev.evanishyn.services.ExpenseServiceImpl;
 import io.javalin.Javalin;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class App {
 

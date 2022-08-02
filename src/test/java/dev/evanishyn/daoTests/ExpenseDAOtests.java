@@ -17,11 +17,11 @@ public class ExpenseDAOtests {
     ExpenseDAO expenseDAO = new ExpenseDAOlocal();
 
 
-//    @Test
-//    void create_expense_dao_test_1(){
-//        Expense newClaim = new Expense(0, new Employee(0, "Fancy", "Person"), 100.00, "The Four Seasons", Type.LODGING, Status.PENDING );
-//        Expense savedClaim = expenseDAO.createClaim(newClaim);
-//        Assertions.assertEquals();
-//    }
+    @Test
+    void create_expense_dao_test_1(){
+        Expense newClaim = new Expense(0, new Employee(0, "Fancy", "Person"), 100.00, "The Four Seasons", Type.LODGING, Status.PENDING );
+        Expense savedClaim = expenseDAO.createClaim(newClaim);
+        Assertions.assertEquals();
+    }
 
 }
