@@ -1,4 +1,4 @@
-package dev.evanishyn.helpers;
+package dev.evanishyn.utilities;
 
 public class Helpers {
 
