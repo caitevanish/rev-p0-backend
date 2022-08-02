@@ -7,7 +7,7 @@ public class Employee{
     private String lName;
 
 
-    public Employee(int id, String fName, String lName, String email, String password, String phoneNumber, int accountBalance) {
+    public Employee(int id, String fName, String lName) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
