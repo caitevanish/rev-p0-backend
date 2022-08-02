@@ -1,7 +1,9 @@
 package dev.evanishyn.app;
 
 import dev.evanishyn.daos.employee_daos.EmployeeDAOLocal;
+import dev.evanishyn.daos.expenses_daos.ExpenseDAOlocal;
 import dev.evanishyn.entities.Employee;
+import dev.evanishyn.entities.Expense;
 import dev.evanishyn.handlers.DeleteEmployeeHandler;
 import dev.evanishyn.handlers.GetEmployeeByIdHandler;
 import dev.evanishyn.handlers.GetEmployeeListHandler;
@@ -16,6 +18,7 @@ import java.util.List;
 public class App {
 
     public static EmployeeService employeeService = new EmployeeServiceImpl(new EmployeeDAOLocal());
+    public static ExpenseService expenseService = new ExpenseServiceImpl(new ExpenseDAOlocal());
 
 //    public static List<Employee> employeeList = new ArrayList<>();
 
@@ -42,6 +45,7 @@ public class App {
 
 
         //-----------Expense-----------
+
 
 
 

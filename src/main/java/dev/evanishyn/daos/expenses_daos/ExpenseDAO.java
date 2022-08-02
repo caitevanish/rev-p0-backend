@@ -1,9 +1,14 @@
 package dev.evanishyn.daos.expenses_daos;
 
+import dev.evanishyn.entities.Expense;
+
 public interface ExpenseDAO {
+
 
     //-----post-----
     // create new expense claim
+    Expense createClaim(Expense expense);
+
 
 
 
