@@ -17,7 +17,7 @@ public interface EmployeeService {
 
     Employee getEmployeeById(int id);
 
-    List<Employee> getEmployeeList();
+    Map<Integer,Employee> getEmployeeList();
 //    Map<Integer, Employee> getEmployeeList();
 
     Employee updateEmployeeInfo(Employee employee);

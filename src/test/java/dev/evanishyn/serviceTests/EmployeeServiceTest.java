@@ -1,5 +1,6 @@
 package dev.evanishyn.serviceTests;
 
+import dev.evanishyn.app.App;
 import dev.evanishyn.daos.employee_daos.EmployeeDAO;
 import dev.evanishyn.daos.employee_daos.EmployeeDAOLocal;
 import dev.evanishyn.entities.Employee;
@@ -31,9 +32,18 @@ public class EmployeeServiceTest {
 //            Assertions.assertNotEquals(1, savedEmployee.getId());
     }
 
-        //Get
+    //Get
 
-        //Put
+    //Put
+    @Test
+    void update_employee_test(){    //
+        Employee employeeV1 = new Employee(1, "Daniel", "Troup");
+        employeeService.registerEmployeeAccount(employeeV1);
+        Employee employeeV2 = new Employee(1, "Daniel", "Evanishyn");
+        employeeService.updateEmployeeInfo(employeeV2);
+        employeeV1 = employeeService.updateEmployeeInfo(employeeV2);
+        Assertions.assertEquals( "Evanishyn" , employeeV1.getlName());
+    }
 
         //Patch
 

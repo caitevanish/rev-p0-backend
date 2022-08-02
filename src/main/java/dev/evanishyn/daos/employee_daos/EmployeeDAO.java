@@ -13,7 +13,7 @@ public interface EmployeeDAO {
     //get
     Employee getEmployeeById(int id);
 
-    List<Employee> getEmployeeList();
+    Map<Integer, Employee> getEmployeeList();
 //    Map<Integer, Employee> getEmployeeList();
 
     //put

@@ -17,15 +17,19 @@ public class EmployeeDAOtests {
     void create_employee_test(){    //PASSED
         Employee employee = new Employee(0, "Caitlin", "Evanishyn");
         Employee savedEmployee = employeeDao.createEmployee(employee);
-//        Assertions.assertNotEquals();
         Assertions.assertNotEquals(0, savedEmployee.getId());
-        System.out.println(savedEmployee);
-
     }
 
     //Get
 
     //Put
+    @Test
+    void update_employee_test(){    //PASSED
+        Employee employee = new Employee(1, "Daniel", "Troup");
+        employeeDao.updateEmployeeInfo(employee);
+        Employee freshEmployee = employeeDao.getEmployeeById(1);
+        Assertions.assertEquals( "Daniel", freshEmployee.getfName());
+    }
 
     //Delete
 

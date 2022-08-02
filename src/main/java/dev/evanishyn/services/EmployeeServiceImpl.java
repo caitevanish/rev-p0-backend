@@ -32,9 +32,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 //        if (employee.containsIllegalSymbol(employee.getEmail()) == true){   //check if email has no extra special characters
 //            throw new RuntimeException("Email must not contain any special symbols.")
 //        }
-
-//        Employee newEmployeeInfo =    //??
-
         return this.employeeDAO.createEmployee(employee);
     }
 
@@ -46,21 +43,19 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public List<Employee> getEmployeeList(){
+    public Map<Integer, Employee> getEmployeeList(){
         return employeeDAO.getEmployeeList();
     }
-//    public Map<Integer, Employee> getEmployeeList(){
-//        return employeeDAO.getEmployeeList();
-//    }
 
     //-----------PUT-----------
 
     @Override
     public Employee updateEmployeeInfo(Employee employee){
         //use helper function to validate new info
-
-    return null;
-//        return this.employeeDAO.updateEmployeeInfo(Employee employee);
+        if (employee.getfName().length() == 0 || employee.getlName().length() == 0){
+            throw new RuntimeException("Employee's first and/or last name cannot be empty.");
+        }
+    return this.employeeDAO.updateEmployeeInfo(employee);
     }
 
 
