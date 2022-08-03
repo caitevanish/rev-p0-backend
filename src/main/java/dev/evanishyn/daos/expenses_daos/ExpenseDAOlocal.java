@@ -52,7 +52,7 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     // 3] get claims by id
     @Override
     public Expense getClaimById(int id){
-        return this.expenseDAO.getClaimById(id);
+        return expenseTable.get(id);
     }
 
 

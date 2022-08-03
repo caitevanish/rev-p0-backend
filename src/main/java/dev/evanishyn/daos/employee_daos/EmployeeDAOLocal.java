@@ -30,16 +30,17 @@ public class EmployeeDAOLocal implements EmployeeDAO{
 
     //-----------GET-----------
     @Override
+    public Map<Integer,Employee> getEmployeeList() {
+        //why returning null? Doesn't it return ListArray of all employees?
+        return this.employeeTable;
+    }
+
+    @Override
     public Employee getEmployeeById(int id) {
         //Access the employee hash map and pass in id with get method;
         return employeeTable.get(id);
     }
 
-    @Override
-    public Map<Integer,Employee> getEmployeeList() {
-        //why returning null? Doesn't it return ListArray of all employees?
-        return this.employeeTable;
-    }
 
     //-----------PUT-----------
     @Override

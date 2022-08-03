@@ -7,18 +7,60 @@ import dev.evanishyn.entities.Expense;
 import dev.evanishyn.utilities.Status;
 import dev.evanishyn.utilities.Category;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+
+import java.util.Map;
 
 public class ExpenseDAOtests {
 
-    ExpenseDAO expenseDAO = new ExpenseDAOlocal();
+    static ExpenseDAO expenseDAO = new ExpenseDAOlocal();
 
 
     @Test
+    @Order(1)
     void create_expense_dao_test_1(){
         Expense newClaim = new Expense(0, 1, 100.00, "The Four Seasons", Category.LODGING, Status.PENDING );
         Expense savedClaim = expenseDAO.createClaim(newClaim);
         Assertions.assertEquals(1, savedClaim.getId());
     }
 
+    //Get
+    @Test
+    @Order(2)
+    void get_all_expenses_test(){
+        Expense expense1 = new Expense(0,1, 50.00,"Red Lobster", Category.FOOD, Status.PENDING );
+        Expense expense2 = new Expense(0,1, 300.00,"Airfare", Category.TRAVEL, Status.APPROVED );
+
+        expenseDAO.createClaim(expense1);
+        expenseDAO.createClaim(expense2);
+
+        Map<Integer,Expense> expenseList = expenseDAO.getAllClaims();
+        Assertions.assertEquals(3, expenseList.size());
+    }
+
+    @Test
+    @Order(3)
+    void get_expense_by_id(){
+        Expense expense = expenseDAO.getClaimById(1);
+        Assertions.assertEquals("Red Lobster", expense.getDescription());
+    }
+
+    //Put
+    @Test
+    @Order(4)
+    void update_expense_test(){    //
+        Expense expense = new Expense(3, 1, 400.00, "Airfare", Category.TRAVEL, Status.PENDING);
+        expenseDAO.updateClaimInformation(expense);
+        Expense newExpense = expenseDAO.getClaimById(3);
+        Assertions.assertEquals( 400.00, newExpense.getAmount());
+    }
+
+    //Delete
+    @Test
+    @Order(5)
+    void delete_expense_test(){
+        boolean result = expenseDAO.deleteClaimById(1);
+        Assertions.assertTrue(result);
+    }
 }
