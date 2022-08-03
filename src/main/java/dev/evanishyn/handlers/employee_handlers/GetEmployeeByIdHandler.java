@@ -15,7 +15,14 @@ public class GetEmployeeByIdHandler implements Handler {
         Employee employee = App.employeeService.getEmployeeById(id);
         Gson gson = new Gson();
         String json = gson.toJson(employee);
-        ctx.result(json);
+
+        if(employee != null){
+            ctx.result(json);
+        }
+        else{
+            ctx.status(404);
+            ctx.result("Employee not Found");
+        }
 
     }
 

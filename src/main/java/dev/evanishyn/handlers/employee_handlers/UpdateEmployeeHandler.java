@@ -16,6 +16,12 @@ public class UpdateEmployeeHandler implements Handler {
         Employee employee = gson.fromJson(employeeJSON, Employee.class);
         Employee updatedEmployee = App.employeeService.updateEmployeeInfo(employee);
         String json = gson.toJson(updatedEmployee);
-        ctx.result(json);
+        if(employee != null){
+            ctx.result(json);
+        }
+        else{
+            ctx.status(404);
+            ctx.result("Employee not Found");
+        }
     }
 }
