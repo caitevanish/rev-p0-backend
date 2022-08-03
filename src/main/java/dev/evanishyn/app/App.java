@@ -4,6 +4,7 @@ import dev.evanishyn.daos.employee_daos.EmployeeDAOLocal;
 import dev.evanishyn.daos.expenses_daos.ExpenseDAOlocal;
 import dev.evanishyn.handlers.employee_handlers.*;
 import dev.evanishyn.handlers.expense_handlers.CreateNewClaimHandler;
+import dev.evanishyn.handlers.expense_handlers.GetClaimByIdHandler;
 import dev.evanishyn.services.EmployeeService;
 import dev.evanishyn.services.EmployeeServiceImpl;
 import dev.evanishyn.services.ExpenseService;
@@ -37,10 +38,11 @@ public class App {
 
         //-----------Expense-----------
         CreateNewClaimHandler createNewClaimHandler = new CreateNewClaimHandler();
+        GetClaimByIdHandler getClaimByIdHandler = new GetClaimByIdHandler();
 
 
         app.post("/expenses", createNewClaimHandler);
-
+        app.get("/expense/{id}", getClaimByIdHandler);
 
 
         app.start();

@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class ExpenseDAOlocal implements ExpenseDAO{
 
+    ExpenseDAO expenseDAO;
     private Map<Integer, Expense> expenseTable = new HashMap<>();
     private int idMaker = 1;
 
@@ -25,7 +26,7 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     // 1] get expense report (aka all expense claims)
     @Override
     public Map<Integer,Expense> getAllClaims(){
-        return this.expenseTable;
+        return expenseTable;
     }
 
 
@@ -38,7 +39,7 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     // 3] get claims by id
     @Override
     public Expense getClaimById(int id){
-        return expenseTable.get(id);
+        return this.expenseDAO.getClaimById(id);
     }
 
     //-----------PUT-----------

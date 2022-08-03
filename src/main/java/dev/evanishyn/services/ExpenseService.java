@@ -12,7 +12,7 @@ public interface ExpenseService {
 
     //-----get [x3]-----
     // 1] get expense report (aka all expense claims)
-    Expense getAllClaimsService();
+    Expense getClaimById(int id);
 
     // 2] get all pending claim reimbursements
     Map<Integer,Expense> getPendingClaims();
