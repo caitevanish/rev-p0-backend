@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 
 public class ConnectionTest {
-    @Test
+
+    @Test   //Passed
     void connection_available(){
         Connection connection = ConnectionUtil.createConnection();
         System.out.println(connection);
