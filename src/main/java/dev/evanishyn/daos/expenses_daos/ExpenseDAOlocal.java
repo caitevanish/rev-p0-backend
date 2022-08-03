@@ -1,8 +1,6 @@
 package dev.evanishyn.daos.expenses_daos;
 
-import dev.evanishyn.daos.employee_daos.EmployeeDAO;
-import dev.evanishyn.daos.employee_daos.EmployeeDAOLocal;
-import dev.evanishyn.entities.Employee;
+
 import dev.evanishyn.entities.Expense;
 
 import java.util.HashMap;
@@ -33,7 +31,7 @@ public class ExpenseDAOlocal implements ExpenseDAO{
 
     // 2] get all pending claim reimbursements
     @Override
-    public Expense getPendingClaims(){
+    public Map<Integer,Expense> getPendingClaims(){
         return null;
     }
 

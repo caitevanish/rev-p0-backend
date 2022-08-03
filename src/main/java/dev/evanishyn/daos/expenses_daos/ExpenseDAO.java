@@ -18,7 +18,7 @@ public interface ExpenseDAO {
 
 
     // 2] get all pending claim reimbursements
-    Expense getPendingClaims();
+    Map<Integer,Expense> getPendingClaims();
 
 
     // 3] get claims by id
@@ -33,7 +33,10 @@ public interface ExpenseDAO {
 
     //-----patch [x2]-----
     // 1] approve
+    Expense updateApproveClaim();
+
     // 2] deny
+    Expense updateDenyClaim();
 
 
 

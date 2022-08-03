@@ -3,6 +3,7 @@ package dev.evanishyn.app;
 import dev.evanishyn.daos.employee_daos.EmployeeDAOLocal;
 import dev.evanishyn.daos.expenses_daos.ExpenseDAOlocal;
 import dev.evanishyn.handlers.employee_handlers.*;
+import dev.evanishyn.handlers.expense_handlers.CreateNewClaimHandler;
 import dev.evanishyn.services.EmployeeService;
 import dev.evanishyn.services.EmployeeServiceImpl;
 import dev.evanishyn.services.ExpenseService;
@@ -35,9 +36,10 @@ public class App {
 
 
         //-----------Expense-----------
+        CreateNewClaimHandler createNewClaimHandler = new CreateNewClaimHandler();
 
 
-
+        app.post("/expenses", createNewClaimHandler);
 
 
 

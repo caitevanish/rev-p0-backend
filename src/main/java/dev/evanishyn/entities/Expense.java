@@ -29,11 +29,11 @@ public class Expense {
         this.id = id;
     }
 
-    public int getEmployee() {
+    public int getEmployeeID() {
         return employeeId;
     }
 
-    public void setEmployee(Employee employee) {
+    public void setEmployeeID(Employee employee) {
         this.employeeId = employeeId;
     }
 
@@ -53,11 +53,11 @@ public class Expense {
         this.description = description;
     }
 
-    public Category getType() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setType(Category category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
