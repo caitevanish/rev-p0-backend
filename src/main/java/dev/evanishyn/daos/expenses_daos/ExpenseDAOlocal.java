@@ -26,7 +26,7 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     // 1] get expense report (aka all expense claims)
     @Override
     public Map<Integer,Expense> getAllClaims(){
-        return expenseTable;
+        return expenseDAO.getAllClaims();
     }
 
 

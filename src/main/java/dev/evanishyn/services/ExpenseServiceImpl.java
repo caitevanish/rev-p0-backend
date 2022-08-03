@@ -29,10 +29,10 @@ public class ExpenseServiceImpl implements ExpenseService {
     //-----get [x3]-----
     // 1] get expense report (aka all expense claims)
 
-//    @Override
-//    public Map<Integer, Expense> getAllClaims(){
-//        return expenseDAO.getAllClaims();
-//    }
+    @Override
+    public Map<Integer, Expense> getAllClaims(){
+        return expenseDAO.getAllClaims();
+    }
 
     // 2] get all pending claim reimbursements
 //    @Override
