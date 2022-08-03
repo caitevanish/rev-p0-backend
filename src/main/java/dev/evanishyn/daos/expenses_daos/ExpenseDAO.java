@@ -1,6 +1,7 @@
 package dev.evanishyn.daos.expenses_daos;
 
 import dev.evanishyn.entities.Expense;
+import dev.evanishyn.utilities.Status;
 
 import java.util.Map;
 
@@ -17,8 +18,8 @@ public interface ExpenseDAO {
     Map<Integer,Expense> getAllClaims();
 
 
-    // 2] get all pending claim reimbursements
-    Map<Integer,Expense> getPendingClaims();
+//    // 2] get all pending claim reimbursements
+//    Map<Integer,Expense> getPendingClaims(Status status);
 
 
     // 3] get claims by id
@@ -31,12 +32,12 @@ public interface ExpenseDAO {
     Expense updateClaimInformation(Expense expense);
 
 
-    //-----patch [x2]-----
-    // 1] approve
-    Expense updateApproveClaim();
-
-    // 2] deny
-    Expense updateDenyClaim();
+//    //-----patch [x2]-----
+//    // 1] approve
+//    Expense updateApproveClaim();
+//
+//    // 2] deny
+//    Expense updateDenyClaim();
 
 
 

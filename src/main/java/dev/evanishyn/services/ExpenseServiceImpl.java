@@ -1,8 +1,8 @@
 package dev.evanishyn.services;
 
 import dev.evanishyn.daos.expenses_daos.ExpenseDAO;
-import dev.evanishyn.entities.Employee;
 import dev.evanishyn.entities.Expense;
+import dev.evanishyn.utilities.Status;
 
 import java.util.Map;
 
@@ -34,10 +34,10 @@ public class ExpenseServiceImpl implements ExpenseService {
         return expenseDAO.getAllClaims();
     }
 
-    // 2] get all pending claim reimbursements
+//    // 2] get all pending claim reimbursements
 //    @Override
-//    public Map<Integer, Expense> getPendingClaims(){
-//        return expenseDAO.getPendingClaims();
+//    public Map<Integer, Expense> getPendingClaims(Status status){
+//        return this.expenseDAO.getPendingClaims(status);
 //    }
 
     // 3] get claims by id
@@ -56,23 +56,23 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
 
-    //-----patch [x2]-----
-    // 1] approve
-    @Override
-    public Expense updateApproveClaim(){
-        return null;
-    }
-
-    // 2] deny
-    @Override
-    public Expense updateDenyClaim(){
-        return null;
-    }
+//    //-----patch [x2]-----
+//    // 1] approve
+//    @Override
+//    public Expense updateApproveClaim(){
+//        return null;
+//    }
+//
+//    // 2] deny
+//    @Override
+//    public Expense updateDenyClaim(){
+//        return null;
+//    }
 
                 //-----delete-----
     @Override
     public boolean deleteClaimById(int id){
-        return false;
+        return this.expenseDAO.deleteClaimById(id);
     }
 
 
