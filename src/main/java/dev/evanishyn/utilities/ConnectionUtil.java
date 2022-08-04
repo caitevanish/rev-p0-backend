@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionUtil {
     public static Connection createConnection(){
         try{
-            Connection conn = DriverManager.getConnection(System.getenv(""));
+            Connection conn = DriverManager.getConnection(System.getenv("AZURE_SQL_DB"));
             return conn;
         }catch(SQLException e){
             e.printStackTrace();
