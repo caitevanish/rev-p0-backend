@@ -22,6 +22,9 @@ public interface ExpenseDAO {
 //    Map<Integer,Expense> getPendingClaims(Status status);
 
 
+    // 2] get all pending claim reimbursements
+    Map<Integer,Expense> getPendingClaims(Status status);
+
     // 3] get claims by id
     Expense getClaimById(int id);
 

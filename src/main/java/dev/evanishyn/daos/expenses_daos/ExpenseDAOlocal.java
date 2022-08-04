@@ -7,8 +7,6 @@ import dev.evanishyn.utilities.Status;
 import java.util.HashMap;
 import java.util.Map;
 
-import static dev.evanishyn.utilities.Status.PENDING;
-
 public class ExpenseDAOlocal implements ExpenseDAO{
 
     ExpenseDAO expenseDAO;
@@ -35,19 +33,19 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     }
 
 
-//    // 2] get all pending claim reimbursements
-//    @Override
-//    public Map<Integer,Expense> getPendingClaims(Status status){
-//        Map<Integer, Expense> allClaims = this.getAllClaims();
-//        Map<Integer, Expense> pendingClaims = new HashMap<Integer, Expense>(allClaims);
-//
-//        for(Expense expense : pendingClaims.values()){
-//            if(expense.getStatus().equals(PENDING)){
-//                pendingClaims.put(expense.getId(), expense);
-//            }
-//        }
-//        return pendingClaims;
-//    }
+    // 2] get all pending claim reimbursements
+    @Override
+    public Map<Integer,Expense> getPendingClaims(Status status){
+        Map<Integer, Expense> allClaims = this.getAllClaims();
+        Map<Integer, Expense> pendingClaims = new HashMap<>();
+
+        for(Expense expense : allClaims.values()){
+            if(expense.getStatus().equals(status.PENDING)){
+                pendingClaims.put(expense.getId(), expense);
+            }
+        }
+        return pendingClaims;
+    }
 
     // 3] get claims by id
     @Override
