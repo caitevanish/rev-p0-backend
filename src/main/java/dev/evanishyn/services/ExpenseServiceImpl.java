@@ -12,6 +12,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     private ExpenseDAO expenseDAO;
 
+
     public ExpenseServiceImpl(ExpenseDAO expenseDAO) {
         this.expenseDAO = expenseDAO;
     }
@@ -36,18 +37,17 @@ public class ExpenseServiceImpl implements ExpenseService {
         return expenseDAO.getAllClaims();
     }
 
-//    // 2] get all pending claim reimbursements
-//    @Override
-//    public Map<Integer, Expense> getPendingClaims(Status status){
-//        return this.expenseDAO.getPendingClaims(status);
-//    }
+    // 2] get all pending claim reimbursements
+    @Override
+    public Map<Integer, Expense> getPendingClaims(Status status){
+        return expenseDAO.getPendingClaims(status);
+    }
 
     // 3] get claims by id
     @Override
     public Expense getClaimById(int id){
         return expenseDAO.getClaimById(id);
     }
-
 
 
     //-----put-----

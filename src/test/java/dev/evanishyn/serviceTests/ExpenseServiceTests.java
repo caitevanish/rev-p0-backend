@@ -43,16 +43,24 @@ public class ExpenseServiceTests {
 
     @Test
     @Order(3)
-    void get_expense_by_id(){
-        Expense expense = expenseService.getClaimById(1);
+    void get_expense_by_id_test(){
+        Expense expense = expenseService.getClaimById(2);
         Assertions.assertEquals("Red Lobster", expense.getDescription());
     }
 
-//    @Test
-//    @Order(4)
-//    void get_status_by_id(){
-//
-//    }
+    @Test
+    @Order(4)
+    void get_all_pending_claims_test(){
+        Expense expense3 = new Expense(0,2, 70.00,"Oregano's", Category.FOOD, Status.APPROVED );
+        Expense expense4 = new Expense(0,2, 30.00,"Train ride", Category.TRAVEL, Status.PENDING );
+
+        expenseDAO.createClaim(expense3);
+        expenseDAO.createClaim(expense4);
+
+        Map<Integer,Expense> pendingList = expenseDAO.getPendingClaims(Status.PENDING);
+
+        Assertions.assertEquals(3, pendingList.size());
+    }
 
     //Put
     @Test
