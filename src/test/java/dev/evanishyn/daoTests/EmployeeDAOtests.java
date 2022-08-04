@@ -50,7 +50,7 @@ public class EmployeeDAOtests {
     //Put
     @Test   //Passed
     @Order(4)
-    void update_employee_test(){    //PASSED
+    void update_employee_test(){
         Employee employee = new Employee(1, "Daniel", "Troup");
         employeeDao.updateEmployeeInfo(employee);
         Employee freshEmployee = employeeDao.getEmployeeById(1);

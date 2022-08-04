@@ -6,18 +6,22 @@ import dev.evanishyn.daos.employee_daos.EmployeeDAOLocal;
 import dev.evanishyn.entities.Employee;
 import dev.evanishyn.services.EmployeeService;
 import dev.evanishyn.services.EmployeeServiceImpl;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.List;
+import java.util.Map;
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+
 
 public class EmployeeServiceTest {
 
-    EmployeeDAO employeeDAO = new EmployeeDAOLocal();
-    EmployeeService employeeService = new EmployeeServiceImpl(employeeDAO);
+    static EmployeeDAO employeeDAO = new EmployeeDAOLocal();
+    static EmployeeService employeeService = new EmployeeServiceImpl(employeeDAO);
 
     //Post
     @Test   //PASSED
+    @Order(1)
     void create_employee_no_errors() {
         Employee testEmp = new Employee(0, "Caitlin", "Evanishyn");
         Employee savedEmployee = employeeService.registerEmployeeAccount(testEmp);
@@ -25,6 +29,7 @@ public class EmployeeServiceTest {
     }
 
     @Test   //Fix the registerEmployeeAccount name verification
+    @Order(2)
     void create_employee_some_errors() {
         Employee testEmp = new Employee(0, "C", "Evanishyn");
         Assertions.assertEquals("", employeeService.registerEmployeeAccount(testEmp).getfName());
@@ -33,6 +38,21 @@ public class EmployeeServiceTest {
     }
 
     //Get
+    @Test
+    @Order(3)
+    void get_all_employees_test(){
+        Employee employee1 = new Employee(0, "Moira", "Rose");
+        Employee employee2 = new Employee(0, "David", "Rose");
+        Employee employee3 = new Employee(0, "Johnny", "Rose");
+
+        employeeService.registerEmployeeAccount(employee1);
+        employeeService.registerEmployeeAccount(employee2);
+        employeeService.registerEmployeeAccount(employee3);
+
+        Map<Integer, Employee>employeeList = employeeService.getEmployeeList();
+        Assertions.assertEquals(5,employeeList.size());
+    }
+
 
     //Put
     @Test
@@ -45,10 +65,13 @@ public class EmployeeServiceTest {
         Assertions.assertEquals( "Evanishyn" , employeeV1.getlName());
     }
 
-        //Patch
-
         //Delete
-
+    @Test
+    @Order(5)
+    void delete_employee_test(){
+        boolean result = employeeService.deleteEmployeeAccount(1);
+        Assertions.assertTrue(result);
+    }
 
 
 

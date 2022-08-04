@@ -6,11 +6,11 @@ import dev.evanishyn.entities.Employee;
 import dev.evanishyn.entities.Expense;
 import dev.evanishyn.utilities.Status;
 import dev.evanishyn.utilities.Category;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Map;
+
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 public class ExpenseDAOtests {
 
@@ -18,7 +18,7 @@ public class ExpenseDAOtests {
 
 
     @Test
-    @Order(1)
+    @Order(1)   //PASSED
     void create_expense_dao_test_1(){
         Expense newClaim = new Expense(0, 1, 100.00, "The Four Seasons", Category.LODGING, Status.PENDING );
         Expense savedClaim = expenseDAO.createClaim(newClaim);
@@ -27,7 +27,7 @@ public class ExpenseDAOtests {
 
     //Get
     @Test
-    @Order(2)
+    @Order(2)   //PASSED
     void get_all_expenses_test(){
         Expense expense1 = new Expense(0,1, 50.00,"Red Lobster", Category.FOOD, Status.PENDING );
         Expense expense2 = new Expense(0,1, 300.00,"Airfare", Category.TRAVEL, Status.APPROVED );
@@ -42,12 +42,12 @@ public class ExpenseDAOtests {
     @Test
     @Order(3)
     void get_expense_by_id(){
-        Expense expense = expenseDAO.getClaimById(1);
+        Expense expense = expenseDAO.getClaimById(2);
         Assertions.assertEquals("Red Lobster", expense.getDescription());
     }
 
     //Put
-    @Test
+    @Test   //PASSED
     @Order(4)
     void update_expense_test(){    //
         Expense expense = new Expense(3, 1, 400.00, "Airfare", Category.TRAVEL, Status.PENDING);
@@ -57,10 +57,13 @@ public class ExpenseDAOtests {
     }
 
     //Delete
-    @Test
+    @Test   //PASSED
     @Order(5)
     void delete_expense_test(){
         boolean result = expenseDAO.deleteClaimById(1);
         Assertions.assertTrue(result);
     }
+
+
+
 }
