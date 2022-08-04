@@ -11,15 +11,12 @@ public interface ExpenseService {
     Expense createNewClaimService(Expense expense);
 
 
-//    // 2] get all pending claim reimbursements
-//    Map<Integer, Expense> getPendingClaims(Status status);
-
-    //-----get [x3]-----
+    //----------GET [x3]----------
     // 1] get expense report (aka all expense claims)
     Expense getClaimById(int id);
 
-//    // 2] get all pending claim reimbursements
-//    Map<Integer,Expense> getPendingClaims();
+    // 2] get all pending claim reimbursements
+    Map<Integer,Expense> getPendingClaims(Status status);
 
     // 3] get claims by id
     Map<Integer,Expense> getAllClaims();
