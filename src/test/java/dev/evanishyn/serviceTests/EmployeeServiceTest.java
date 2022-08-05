@@ -1,14 +1,12 @@
 package dev.evanishyn.serviceTests;
 
-import dev.evanishyn.app.App;
-import dev.evanishyn.daos.employee_daos.EmployeeDAO;
-import dev.evanishyn.daos.employee_daos.EmployeeDAOLocal;
+import dev.evanishyn.daos.employeeDAOs.EmployeeDAO;
+import dev.evanishyn.daos.employeeDAOs.EmployeeDAOLocal;
 import dev.evanishyn.entities.Employee;
 import dev.evanishyn.services.EmployeeService;
 import dev.evanishyn.services.EmployeeServiceImpl;
 import org.junit.jupiter.api.*;
 
-import java.util.List;
 import java.util.Map;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)

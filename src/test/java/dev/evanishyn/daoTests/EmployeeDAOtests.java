@@ -2,9 +2,14 @@ package dev.evanishyn.daoTests;
 
 import dev.evanishyn.daos.employeeDAOs.EmployeeDAO;
 import dev.evanishyn.daos.employeeDAOs.EmployeeDAOLocal;
+import dev.evanishyn.daos.employeeDAOs.EmployeeDAOPostgres;
 import dev.evanishyn.entities.Employee;
+import dev.evanishyn.utilities.ConnectionUtil;
 import org.junit.jupiter.api.*;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Map;
 
 
@@ -12,7 +17,35 @@ import java.util.Map;
 
 public class EmployeeDAOtests {
 
-    static EmployeeDAO employeeDao = new EmployeeDAOLocal();
+    @BeforeAll
+    static void setup(){
+        try(Connection conn = ConnectionUtil.createConnection()) {
+            String sql = "create table employee(" +
+                    "id serial primary key,\n" +
+                    "fname varchar(100) not null,\n" +
+                    "lname varchar(100) not null);";
+            Statement statement = conn.createStatement();
+            statement.execute(sql);
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
+    @AfterAll
+    static void teardown(){
+        try(Connection conn = ConnectionUtil.createConnection()){
+            String sql = "drop table employee";
+            Statement statement = conn.createStatement();
+            statement.execute(sql);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+
+    static EmployeeDAO employeeDao = new EmployeeDAOPostgres();
+
 
     //Post
     @Test   //Passed
@@ -24,7 +57,7 @@ public class EmployeeDAOtests {
     }
 
     //Get
-    @Test   //Passed
+    @Test
     @Order(2)
     void get_all_employees_test(){
         Employee employee1 = new Employee(0, "Moira", "Rose");
@@ -36,6 +69,7 @@ public class EmployeeDAOtests {
         employeeDao.createEmployee(employee3);
 
         Map<Integer, Employee> employeeList = employeeDao.getEmployeeList();
+
         Assertions.assertEquals(4,employeeList.size());
     }
 
@@ -48,7 +82,7 @@ public class EmployeeDAOtests {
     }
 
     //Put
-    @Test   //Passed
+    @Test
     @Order(4)
     void update_employee_test(){
         Employee employee = new Employee(1, "Daniel", "Troup");
