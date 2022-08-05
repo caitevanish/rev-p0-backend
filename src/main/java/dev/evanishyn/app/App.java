@@ -1,9 +1,9 @@
 package dev.evanishyn.app;
 
-import dev.evanishyn.daos.employee_daos.EmployeeDAOLocal;
-import dev.evanishyn.daos.expenses_daos.ExpenseDAOlocal;
-import dev.evanishyn.handlers.employee_handlers.*;
-import dev.evanishyn.handlers.expense_handlers.*;
+import dev.evanishyn.daos.employeeDAOs.EmployeeDAOLocal;
+import dev.evanishyn.daos.expensesDAOs.ExpenseDAOlocal;
+import dev.evanishyn.handlers.employeeHandlers.*;
+import dev.evanishyn.handlers.expenseHandlers.*;
 import dev.evanishyn.services.EmployeeService;
 import dev.evanishyn.services.EmployeeServiceImpl;
 import dev.evanishyn.services.ExpenseService;
