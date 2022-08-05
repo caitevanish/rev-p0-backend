@@ -1,7 +1,7 @@
 package dev.evanishyn.daoTests;
 
-import dev.evanishyn.daos.employee_daos.EmployeeDAO;
-import dev.evanishyn.daos.employee_daos.EmployeeDAOLocal;
+import dev.evanishyn.daos.employeeDAOs.EmployeeDAO;
+import dev.evanishyn.daos.employeeDAOs.EmployeeDAOLocal;
 import dev.evanishyn.entities.Employee;
 import org.junit.jupiter.api.*;
 

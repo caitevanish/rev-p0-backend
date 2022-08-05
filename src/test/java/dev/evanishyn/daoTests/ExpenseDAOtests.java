@@ -1,8 +1,7 @@
 package dev.evanishyn.daoTests;
 
-import dev.evanishyn.daos.expenses_daos.ExpenseDAO;
-import dev.evanishyn.daos.expenses_daos.ExpenseDAOlocal;
-import dev.evanishyn.entities.Employee;
+import dev.evanishyn.daos.expensesDAOs.ExpenseDAO;
+import dev.evanishyn.daos.expensesDAOs.ExpenseDAOlocal;
 import dev.evanishyn.entities.Expense;
 import dev.evanishyn.utilities.Status;
 import dev.evanishyn.utilities.Category;
@@ -50,7 +49,7 @@ public class ExpenseDAOtests {
     @Order(4)
     void get_pending_claims_list(){
         Expense expense3 = new Expense(0,2, 70.00,"Oregano's", Category.FOOD, Status.APPROVED );
-        Expense expense4 = new Expense(0,2, 30.00,"Train ride", Category.TRAVEL, Status.PENDING );
+        Expense expense4 = new Expense(0,2, 36.00,"Train", Category.TRAVEL, Status.PENDING );
 
         expenseDAO.createClaim(expense3);
         expenseDAO.createClaim(expense4);
@@ -62,13 +61,13 @@ public class ExpenseDAOtests {
 
 
     //Put
-    @Test   //PASSED
+    @Test
     @Order(5)
     void update_expense_test(){    //
-        Expense expense = new Expense(3, 1, 400.00, "Airfare", Category.TRAVEL, Status.PENDING);
-        expenseDAO.updateClaimInformation(expense);
-        Expense newExpense = expenseDAO.getClaimById(3);
-        Assertions.assertEquals( 400.00, newExpense.getAmount());
+        Expense updExpense = expenseDAO.getClaimById(1);
+        updExpense.setAmount(1000.00);
+        expenseDAO.updateClaimInformation(updExpense);
+        Assertions.assertNotEquals( 100.00, updExpense.getAmount());
     }
 
     //Delete

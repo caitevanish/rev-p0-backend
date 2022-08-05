@@ -1,4 +1,4 @@
-package dev.evanishyn.daos.employee_daos;
+package dev.evanishyn.daos.employeeDAOs;
 
 import dev.evanishyn.entities.Employee;
 import dev.evanishyn.utilities.ConnectionUtil;

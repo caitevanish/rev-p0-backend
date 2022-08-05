@@ -1,23 +1,25 @@
-package dev.evanishyn.handlers.employee_handlers;
+package dev.evanishyn.handlers.expenseHandlers;
 
 import com.google.gson.Gson;
 import dev.evanishyn.app.App;
-import dev.evanishyn.entities.Employee;
+import dev.evanishyn.entities.Expense;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
 
-public class GetEmployeeListHandler implements Handler {
+
+public class GetClaimByIdHandler implements Handler {
 
     @Override
     public void handle(@NotNull Context ctx) throws Exception{
-        Map<Integer,Employee> employeeList = App.employeeService.getEmployeeList();
+        int id = Integer.parseInt(ctx.pathParam("id"));
+        Expense expense = App.expenseService.getClaimById(id);
         Gson gson = new Gson();
-        String json = gson.toJson(employeeList);
+        String json = gson.toJson(expense);
         ctx.result(json);
     }
+
 
 
 }

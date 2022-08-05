@@ -1,7 +1,6 @@
-package dev.evanishyn.handlers.expense_handlers;
+package dev.evanishyn.handlers.expenseHandlers;
 
 import dev.evanishyn.app.App;
-import dev.evanishyn.entities.Expense;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;

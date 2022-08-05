@@ -1,6 +1,6 @@
 package dev.evanishyn.services;
 
-import dev.evanishyn.daos.expenses_daos.ExpenseDAO;
+import dev.evanishyn.daos.expensesDAOs.ExpenseDAO;
 import dev.evanishyn.entities.Expense;
 import dev.evanishyn.utilities.Status;
 
@@ -54,7 +54,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     // update expense
     @Override
     public Expense updateClaimInformation(Expense expense){
-        return null;
+        return this.expenseDAO.updateClaimInformation(expense);
     }
 
 

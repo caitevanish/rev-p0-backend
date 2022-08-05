@@ -1,9 +1,8 @@
-package dev.evanishyn.daos.employee_daos;
+package dev.evanishyn.daos.employeeDAOs;
 
 import dev.evanishyn.entities.Employee;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class EmployeeDAOLocal implements EmployeeDAO{

@@ -1,4 +1,4 @@
-package dev.evanishyn.handlers.expense_handlers;
+package dev.evanishyn.handlers.expenseHandlers;
 
 import com.google.gson.Gson;
 import dev.evanishyn.app.App;

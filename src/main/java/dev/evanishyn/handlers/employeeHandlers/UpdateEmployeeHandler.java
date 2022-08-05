@@ -1,4 +1,4 @@
-package dev.evanishyn.handlers.employee_handlers;
+package dev.evanishyn.handlers.employeeHandlers;
 
 import com.google.gson.Gson;
 import dev.evanishyn.app.App;

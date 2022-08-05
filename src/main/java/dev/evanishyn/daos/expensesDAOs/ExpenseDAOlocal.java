@@ -1,4 +1,4 @@
-package dev.evanishyn.daos.expenses_daos;
+package dev.evanishyn.daos.expensesDAOs;
 
 
 import dev.evanishyn.entities.Expense;

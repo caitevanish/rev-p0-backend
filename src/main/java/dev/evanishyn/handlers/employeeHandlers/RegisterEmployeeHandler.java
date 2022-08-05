@@ -1,4 +1,4 @@
-package dev.evanishyn.handlers.employee_handlers;
+package dev.evanishyn.handlers.employeeHandlers;
 
 import com.google.gson.Gson;
 import dev.evanishyn.app.App;
@@ -6,9 +6,6 @@ import dev.evanishyn.entities.Employee;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class RegisterEmployeeHandler implements Handler {
 
