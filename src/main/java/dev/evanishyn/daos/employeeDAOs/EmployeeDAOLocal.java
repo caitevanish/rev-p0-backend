@@ -15,13 +15,13 @@ public class EmployeeDAOLocal implements EmployeeDAO{
     @Override
     public Employee createEmployee(Employee employee){
         //Set the employee id
-        employee.setId(idMaker);
+        employee.setEmp_id(idMaker);
 
         //increase idMaker by one (for next new employee)
         idMaker++;
 
         //put the employee in hashTable with id getter and the employee object
-        employeeTable.put(employee.getId(), employee);
+        employeeTable.put(employee.getEmp_id(), employee);
 
         //return the created employee
         return employee;
@@ -46,7 +46,7 @@ public class EmployeeDAOLocal implements EmployeeDAO{
     public Employee updateEmployeeInfo(Employee employee) {
         //overwrite the spot in the map
         //use put method with employee hash map to 1) get the id, and 2) place the new object
-        employeeTable.put(employee.getId(), employee);
+        employeeTable.put(employee.getEmp_id(), employee);
         return employee;
     }
 

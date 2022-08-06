@@ -1,7 +1,6 @@
 package dev.evanishyn.daoTests;
 
 import dev.evanishyn.daos.employeeDAOs.EmployeeDAO;
-import dev.evanishyn.daos.employeeDAOs.EmployeeDAOLocal;
 import dev.evanishyn.daos.employeeDAOs.EmployeeDAOPostgres;
 import dev.evanishyn.entities.Employee;
 import dev.evanishyn.utilities.ConnectionUtil;
@@ -21,7 +20,7 @@ public class EmployeeDAOtests {
     static void setup(){
         try(Connection conn = ConnectionUtil.createConnection()) {
             String sql = "create table employee(" +
-                    "id serial primary key,\n" +
+                    "emp_id serial primary key,\n" +
                     "fname varchar(100) not null,\n" +
                     "lname varchar(100) not null);";
             Statement statement = conn.createStatement();
@@ -32,16 +31,16 @@ public class EmployeeDAOtests {
     }
 
 
-    @AfterAll
-    static void teardown(){
-        try(Connection conn = ConnectionUtil.createConnection()){
-            String sql = "drop table employee";
-            Statement statement = conn.createStatement();
-            statement.execute(sql);
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
+//    @AfterAll
+//    static void teardown(){
+//        try(Connection conn = ConnectionUtil.createConnection()){
+//            String sql = "drop table employee";
+//            Statement statement = conn.createStatement();
+//            statement.execute(sql);
+//        }catch(SQLException e){
+//            e.printStackTrace();
+//        }
+//    }
 
 
     static EmployeeDAO employeeDao = new EmployeeDAOPostgres();
@@ -53,7 +52,7 @@ public class EmployeeDAOtests {
     void create_employee_test(){    //PASSED
         Employee employee = new Employee(0, "Caitlin", "Evanishyn");
         Employee savedEmployee = employeeDao.createEmployee(employee);
-        Assertions.assertNotEquals(0, savedEmployee.getId());
+        Assertions.assertNotEquals(0, savedEmployee.getEmp_id());
     }
 
     //Get
@@ -92,6 +91,7 @@ public class EmployeeDAOtests {
     }
 
     //Delete
+//    @Disabled
     @Test
     @Order(5)
     void delete_employee_test(){

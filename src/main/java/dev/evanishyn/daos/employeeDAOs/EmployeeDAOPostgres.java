@@ -4,9 +4,7 @@ import dev.evanishyn.entities.Employee;
 import dev.evanishyn.utilities.ConnectionUtil;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class EmployeeDAOPostgres implements EmployeeDAO{
@@ -25,8 +23,8 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
             ResultSet rs = preparedStatement.getGeneratedKeys();
             rs.next();
 
-            int generateKey = rs.getInt("id");
-            employee.setId(generateKey);
+            int generateKey = rs.getInt("emp_id");
+            employee.setEmp_id(generateKey);
             return employee;
 
         } catch(SQLException e){
@@ -38,7 +36,7 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
     @Override
     public Employee getEmployeeById(int id) {
         try(Connection conn = ConnectionUtil.createConnection()){
-            String sql = "select * from employee where employee.id = ?";
+            String sql = "select * from employee where employee.emp_id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1,id);
 
@@ -46,7 +44,7 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
             rs.next();
 
             Employee employee = new Employee();
-            employee.setId(rs.getInt("id"));
+            employee.setEmp_id(rs.getInt("emp_id"));
             employee.setfName(rs.getString("fname"));
             employee.setlName(rs.getString("lname"));
 
@@ -69,10 +67,10 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
 
             while(rs.next()){
                 Employee employee = new Employee();
-                employee.setId(rs.getInt("id"));
+                employee.setEmp_id(rs.getInt("emp_id"));
                 employee.setfName(rs.getString("fname"));
                 employee.setlName(rs.getString("lname"));
-                employeeList.put(employee.getId(), employee);
+                employeeList.put(employee.getEmp_id(), employee);
             }
             return employeeList;
         }catch(SQLException e){
@@ -84,12 +82,12 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
     @Override
     public Employee updateEmployeeInfo(Employee employee) {
         try(Connection conn = ConnectionUtil.createConnection()) {
-            String sql = "update employee set fname = ?, lname = ? where id = ?";
+            String sql = "update employee set fname = ?, lname = ? where emp_id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ps.setString(1, employee.getfName());
             ps.setString(2, employee.getlName());
-            ps.setInt(3, employee.getId());
+            ps.setInt(3, employee.getEmp_id());
 
             ps.executeUpdate();
             return employee;
@@ -104,7 +102,7 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
     @Override
     public boolean deleteEmployeeAccount(int id) {
         try(Connection conn = ConnectionUtil.createConnection()){
-            String sql = "delete from employee where id = ?";
+            String sql = "delete from employee where emp_id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1,id);
             ps.execute();

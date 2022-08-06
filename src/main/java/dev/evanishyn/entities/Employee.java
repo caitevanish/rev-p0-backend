@@ -2,13 +2,13 @@ package dev.evanishyn.entities;
 
 public class Employee{
 
-    private int id;
+    private int emp_id;
     private String fName;
     private String lName;
 
 
-    public Employee(int id, String fName, String lName) {
-        this.id = id;
+    public Employee(int emp_id, String fName, String lName) {
+        this.emp_id = emp_id;
         this.fName = fName;
         this.lName = lName;
 
@@ -18,12 +18,12 @@ public class Employee{
 
     }
 
-    public int getId() {
-        return id;
+    public int getEmp_id() {
+        return emp_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEmp_id(int emp_id) {
+        this.emp_id = emp_id;
     }
 
     public String getfName() {
@@ -47,7 +47,7 @@ public class Employee{
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
+                "emp_id=" + emp_id +
                 ", fName='" + fName + '\'' +
                 ", lName='" + lName + '\'' +
                 '}';
