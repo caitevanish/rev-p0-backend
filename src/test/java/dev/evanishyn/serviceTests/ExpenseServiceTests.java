@@ -1,8 +1,7 @@
 package dev.evanishyn.serviceTests;
 
-import dev.evanishyn.daos.expenses_daos.ExpenseDAO;
-import dev.evanishyn.daos.expenses_daos.ExpenseDAOlocal;
-import dev.evanishyn.entities.Employee;
+import dev.evanishyn.daos.expensesDAOs.ExpenseDAO;
+import dev.evanishyn.daos.expensesDAOs.ExpenseDAOlocal;
 import dev.evanishyn.entities.Expense;
 import dev.evanishyn.services.ExpenseService;
 import dev.evanishyn.services.ExpenseServiceImpl;
@@ -25,7 +24,7 @@ public class ExpenseServiceTests {
     void create_claim_no_errors() {
         Expense newClaim = new Expense(0, 1, 100.00, "The Four Seasons", Category.LODGING, Status.PENDING);
         Expense savedClaim = expenseService.createNewClaimService(newClaim);
-        Assertions.assertEquals(1, savedClaim.getId());
+        Assertions.assertEquals(1, savedClaim.getExp_id());
     }
     //Get
     @Test

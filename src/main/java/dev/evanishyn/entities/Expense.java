@@ -5,36 +5,41 @@ import dev.evanishyn.utilities.Category;
 
 public class Expense {
 
-    private int id;
-    private int employeeId;  //admin1
+    public Expense setStatus;
+    private int exp_id;
+    private int emp_Id;  //admin1
     private double amount;
     private String description;
     private Category category;  //expense.getType().name()   (.name == toString() for enums)
     private Status status;
 
-    public Expense(int id, int employeeId, double amount, String description, Category category, Status status) {
-        this.id = id;
-        this.employeeId = employeeId;
+    public Expense(int exp_id, int emp_Id, double amount, String description, Category category, Status status) {
+        this.exp_id = exp_id;
+        this.emp_Id = emp_Id;
         this.amount = amount;
         this.description = description;
         this.category = category;
         this.status = status;
     }
 
-    public int getId() {
-        return id;
+    public Expense() {
+
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getExp_id() {
+        return exp_id;
+    }
+
+    public void setExp_id(int exp_id) {
+        this.exp_id = exp_id;
     }
 
     public int getEmployeeID() {
-        return employeeId;
+        return emp_Id;
     }
 
     public void setEmployeeID(Employee employee) {
-        this.employeeId = employeeId;
+        this.emp_Id = emp_Id;
     }
 
     public double getAmount() {
@@ -72,8 +77,8 @@ public class Expense {
     @Override
     public String toString() {
         return "Expense{" +
-                "id=" + id +
-                ", employee=" + employeeId +
+                "id=" + exp_id +
+                ", employee=" + emp_Id +
                 ", amount=" + amount +
                 ", description='" + description + '\'' +
                 ", type=" + category +

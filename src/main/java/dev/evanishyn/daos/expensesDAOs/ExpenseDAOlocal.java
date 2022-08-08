@@ -16,9 +16,9 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     //-----------POST-----------
     @Override
     public Expense createClaim(Expense expense) {
-        expense.setId(idMaker);
+        expense.setExp_id(idMaker);
         idMaker++;
-        expenseTable.put(expense.getId(), expense);
+        expenseTable.put(expense.getExp_id(), expense);
         System.out.println(expense);
         return expense;
     }
@@ -41,7 +41,7 @@ public class ExpenseDAOlocal implements ExpenseDAO{
 
         for(Expense expense : allClaims.values()){
             if(expense.getStatus().equals(status.PENDING)){
-                pendingClaims.put(expense.getId(), expense);
+                pendingClaims.put(expense.getExp_id(), expense);
             }
         }
         return pendingClaims;
@@ -58,7 +58,7 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     // update expense
     @Override
     public Expense updateClaimInformation(Expense expense){
-        expenseTable.put(expense.getId(), expense);
+        expenseTable.put(expense.getExp_id(), expense);
         return expense;
     }
 

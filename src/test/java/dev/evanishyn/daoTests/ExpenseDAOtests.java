@@ -1,19 +1,54 @@
 package dev.evanishyn.daoTests;
 
 import dev.evanishyn.daos.expensesDAOs.ExpenseDAO;
-import dev.evanishyn.daos.expensesDAOs.ExpenseDAOlocal;
+import dev.evanishyn.daos.expensesDAOs.ExpenseDAOPostgres;
 import dev.evanishyn.entities.Expense;
+import dev.evanishyn.utilities.ConnectionUtil;
 import dev.evanishyn.utilities.Status;
 import dev.evanishyn.utilities.Category;
 import org.junit.jupiter.api.*;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Map;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 public class ExpenseDAOtests {
 
-    static ExpenseDAO expenseDAO = new ExpenseDAOlocal();
+    @BeforeAll  //Passed
+    static void setup(){
+        try(Connection conn = ConnectionUtil.createConnection()){
+            String sql = "create table expense(\n" +
+                    "\texp_id serial primary key,\n" +
+                    "\tamount int,\n" +
+                    "\tdescription varchar(200) not null,\n" +
+//                    "\tcategory varchar(10) not null,\n" +
+                    "\tcategory varchar(40) check (category in ('LODGING', 'TRAVEL', 'FOOD', 'OTHER')),\n" +
+//                    "\tstatus varchar(10) not null,\n" +
+                    "\tstatus varchar(10) check (status in ('PENDING', 'APPROVED', 'DENIED')),\n" +
+                    "\te_id int references employee(emp_id)\n" +
+                    ")";
+            Statement s = conn.createStatement();
+            s.execute(sql);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+//    @AfterAll
+//    static void teardown(){
+//        try(Connection conn = ConnectionUtil.createConnection()){
+//            String sql = "drop table expense";
+//            Statement s = conn.createStatement();
+//            s.execute(sql);
+//        }catch(SQLException e){
+//            e.printStackTrace();
+//        }
+//    }
+
+    static ExpenseDAO expenseDAO = new ExpenseDAOPostgres();
 
 
     @Test   //PASSED
@@ -21,7 +56,7 @@ public class ExpenseDAOtests {
     void create_expense_dao_test_1(){
         Expense newClaim = new Expense(0, 1, 100.00, "The Four Seasons", Category.LODGING, Status.PENDING );
         Expense savedClaim = expenseDAO.createClaim(newClaim);
-        Assertions.assertEquals(1, savedClaim.getId());
+        Assertions.assertEquals(1, savedClaim.getExp_id());
     }
 
     //Get
