@@ -23,7 +23,7 @@ public class EmployeeServiceTest {
     void create_employee_no_errors() {
         Employee testEmp = new Employee(0, "Caitlin", "Evanishyn");
         Employee savedEmployee = employeeService.registerEmployeeAccount(testEmp);
-        Assertions.assertEquals(1, savedEmployee.getId());
+        Assertions.assertEquals(1, savedEmployee.getEmp_id());
     }
 
     @Test   //Fix the registerEmployeeAccount name verification
