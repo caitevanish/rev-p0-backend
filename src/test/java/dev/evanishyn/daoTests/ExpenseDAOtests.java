@@ -17,6 +17,9 @@ import java.util.Map;
 
 public class ExpenseDAOtests {
 
+    static ExpenseDAO expenseDAO = new ExpenseDAOPostgres();
+
+
     @BeforeAll  //Passed
     static void setup(){
         try(Connection conn = ConnectionUtil.createConnection()){
@@ -24,9 +27,7 @@ public class ExpenseDAOtests {
                     "\texp_id serial primary key,\n" +
                     "\tamount int,\n" +
                     "\tdescription varchar(200) not null,\n" +
-//                    "\tcategory varchar(10) not null,\n" +
                     "\tcategory varchar(40) check (category in ('LODGING', 'TRAVEL', 'FOOD', 'OTHER')),\n" +
-//                    "\tstatus varchar(10) not null,\n" +
                     "\tstatus varchar(10) check (status in ('PENDING', 'APPROVED', 'DENIED')),\n" +
                     "\te_id int references employee(emp_id)\n" +
                     ")";
@@ -48,7 +49,7 @@ public class ExpenseDAOtests {
 //        }
 //    }
 
-    static ExpenseDAO expenseDAO = new ExpenseDAOPostgres();
+
 
 
     @Test   //PASSED
@@ -90,17 +91,16 @@ public class ExpenseDAOtests {
         expenseDAO.createClaim(expense4);
 
         Map<Integer,Expense> pendingList = expenseDAO.getPendingClaims(Status.PENDING);
-//        Map<Integer,Expense> pendingList = expenseDAO.getPendingClaims();
 
-        for(Map.Entry<Integer, Expense> e :  pendingList.entrySet())
-            System.out.println("Key = " + e.getKey() + ", Value = " + e.getValue());
+//        for(Map.Entry<Integer, Expense> e :  pendingList.entrySet())
+//            System.out.println("Key = " + e.getKey() + ", Value = " + e.getValue());
 
         Map<Integer,Expense> expenseList = expenseDAO.getAllClaims();
         for(Map.Entry<Integer, Expense> e :  expenseList.entrySet())
             System.out.println("Key = " + e.getKey() + ", Value = " + e.getValue());
 
 
-        Assertions.assertEquals(3, pendingList.size());
+        Assertions.assertEquals(5, pendingList.size());
     }
 
 
@@ -108,19 +108,22 @@ public class ExpenseDAOtests {
     @Test
     @Order(5)
     void update_expense_test(){    //
-        Expense updExpense = expenseDAO.getClaimById(1);
-        updExpense.setAmount(1000.00);
-        expenseDAO.updateClaimInformation(updExpense);
-        Assertions.assertNotEquals( 100.00, updExpense.getAmount());
+        Expense updExpense = new Expense(0, 1, 50, "Stuff I did stuff", Category.OTHER, Status.DENIED);
+        Expense newExpense = expenseDAO.createClaim(updExpense); //creates test
+        //gets test as new object
+        newExpense.setAmount(500);
+        expenseDAO.updateClaimInformation(newExpense);
+        Expense newestExpense = expenseDAO.getClaimById(6);
+        Assertions.assertEquals( 500.00, newestExpense.getAmount());
     }
 
     @Test
     @Order(6)
     void update_expense_test_approved(){    //
-        Expense updExpense = expenseDAO.getClaimById(5);
-        updExpense.setStatus(Status.APPROVED);
-        expenseDAO.updateClaimInformation(updExpense);
-        Assertions.assertEquals( Status.APPROVED, updExpense.getStatus());
+        Expense approveExpense = expenseDAO.getClaimById(5);
+        approveExpense.setStatus(Status.APPROVED);
+        expenseDAO.updateClaimInformation(approveExpense);
+        Assertions.assertEquals( Status.APPROVED, approveExpense.getStatus());
     }
 
     @Test
@@ -133,11 +136,11 @@ public class ExpenseDAOtests {
     }
 
 //    Delete
-    @Test   //PASSED
-    @Order(8)
-    void delete_expense_test(){
-        boolean result = expenseDAO.deleteClaimById(1);
-        Assertions.assertTrue(result);
-    }
+//    @Test   //PASSED
+//    @Order(8)
+//    void delete_expense_test(){
+//        boolean result = expenseDAO.deleteClaimById(1);
+//        Assertions.assertTrue(result);
+//    }
 
 }

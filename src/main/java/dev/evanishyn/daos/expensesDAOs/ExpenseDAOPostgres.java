@@ -22,7 +22,7 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
             ps.setDouble(1, expense.getAmount());
             ps.setString(2, expense.getDescription());
             ps.setString(3, expense.getCategory().toString());
-            ps.setString(4, expense.getStatus().toString());
+            ps.setString(4, Status.PENDING.toString());
             ps.setInt(5, expense.getEmployeeID());
 
             ps.execute();
@@ -32,12 +32,13 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
 
             int generateKey = rs.getInt("exp_id");
             expense.setExp_id(generateKey);
+            expense.setStatus(Status.PENDING);
             return expense;
 
         }catch(SQLException e){
             e.printStackTrace();
-        }
         return null;
+        }
     }
 
     @Override
@@ -125,14 +126,23 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
     @Override
     public Expense updateClaimInformation(Expense expense) {
         try(Connection conn = ConnectionUtil.createConnection()){
-            String sql = "update expense set exp_id = ?, amount = ?, description = ?, category = ?, status = ? where e_id = ?";
+//            String sql = "update expense set exp_id = ?, amount = ?, description = ?, category = ?, status = ? where e_id = ?";
+//            PreparedStatement ps = conn.prepareStatement(sql);
+//            ps.setInt(1, expense.getExp_id());
+//            ps.setDouble(2, expense.getAmount());
+//            ps.setString(3, expense.getDescription());
+//            ps.setString(4, expense.getCategory().toString());
+//            ps.setString(5, expense.getStatus().toString());
+//            ps.setInt(6, expense.getEmployeeID());
+
+            String sql = "update expense set amount = ?, description = ?, category = ?, status = ? where exp_id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, expense.getExp_id());
-            ps.setDouble(2, expense.getAmount());
-            ps.setString(3, expense.getDescription());
-            ps.setString(4, expense.getCategory().toString());
-            ps.setString(5, expense.getStatus().toString());
-            ps.setInt(6, expense.getExp_id());
+
+            ps.setDouble(1, expense.getAmount());
+            ps.setString(2, expense.getDescription());
+            ps.setString(3, expense.getCategory().toString());
+            ps.setString(4, expense.getStatus().toString());
+            ps.setInt(5, expense.getExp_id());
 
             ps.executeUpdate();
 
@@ -153,8 +163,8 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
             ps.setInt(2, expense.getExp_id());
 
             ps.executeUpdate();
-
             return expense;
+//            return getClaimById(exp_id);
 
         }
         catch(SQLException e){

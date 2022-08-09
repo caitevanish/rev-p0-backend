@@ -29,8 +29,8 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
 
         } catch(SQLException e){
             e.printStackTrace();
-        }
         return null;
+        }
     }
 
     @Override

@@ -54,6 +54,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     // update expense
     @Override
     public Expense updateClaimInformation(Expense expense){
+        expense.setStatus(Status.PENDING);
         return this.expenseDAO.updateClaimInformation(expense);
     }
 
@@ -70,6 +71,9 @@ public class ExpenseServiceImpl implements ExpenseService {
 //    public Expense updateDenyClaim(){
 //        return null;
 //    }
+
+//    @Override
+//    public Expense
 
                 //-----delete-----
     @Override
