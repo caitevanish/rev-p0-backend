@@ -32,6 +32,8 @@ public interface ExpenseDAO {
 
 
 //    //-----patch [x2]-----
+    Expense updateClaimsStatus(Expense expense, Status status);
+
 //    // 1] approve
 //    Expense updateApproveClaim();
 //
@@ -39,6 +41,17 @@ public interface ExpenseDAO {
 //    Expense updateDenyClaim();
 
 
+    // 2] deny
+//    @Override
+//    public Expense updateDenyClaim(Expense expense){
+//        return null;
+//    };
+
+    // 2] deny
+//    @Override
+//    public Expense updateDenyClaim(Expense expense){
+//        return null;
+//    };
 
     //-----delete-----
     boolean deleteClaimById(int id);

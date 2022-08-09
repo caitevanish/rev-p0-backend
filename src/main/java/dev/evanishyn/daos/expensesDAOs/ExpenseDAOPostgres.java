@@ -125,12 +125,50 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
     @Override
     public Expense updateClaimInformation(Expense expense) {
         try(Connection conn = ConnectionUtil.createConnection()){
+            String sql = "update expense set exp_id = ?, amount = ?, description = ?, category = ?, status = ? where emp_id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, expense.getExp_id());
+            ps.setDouble(2, expense.getAmount());
+            ps.setString(3, expense.getDescription());
+            ps.setString(4, expense.getCategory().toString());
+            ps.setString(5, expense.getStatus().toString());
+            ps.setInt(6, expense.getExp_id());
 
+            ps.executeUpdate();
+
+            return expense;
 
         }catch(SQLException e){
             e.printStackTrace();
-        }
             return null;
+        }
+    }
+
+    @Override
+    public Expense updateClaimsStatus(Expense expense, Status status) {
+        try(Connection conn = ConnectionUtil.createConnection()){
+            String sql = "update expense set status = ? where emp_id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, status.toString());
+            ps.setInt(2, expense.getExp_id());
+
+            ps.executeUpdate();
+//
+//            Expense updateExp = new Expense();
+//            expense.setExp_id(rs.getInt("exp_id"));
+//            expense.setAmount(rs.getDouble("amount"));
+//            expense.setDescription(rs.getString("description"));
+//            expense.setStatus(Status.valueOf(rs.getString("status")));
+//            expense.setCategory(Category.valueOf(rs.getString("category")));
+
+            return expense;
+
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+            return null;
+
+        }
     }
 
     @Override
