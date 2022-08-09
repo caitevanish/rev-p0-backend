@@ -125,7 +125,7 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
     @Override
     public Expense updateClaimInformation(Expense expense) {
         try(Connection conn = ConnectionUtil.createConnection()){
-            String sql = "update expense set exp_id = ?, amount = ?, description = ?, category = ?, status = ? where emp_id = ?";
+            String sql = "update expense set exp_id = ?, amount = ?, description = ?, category = ?, status = ? where e_id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, expense.getExp_id());
             ps.setDouble(2, expense.getAmount());
@@ -147,19 +147,12 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
     @Override
     public Expense updateClaimsStatus(Expense expense, Status status) {
         try(Connection conn = ConnectionUtil.createConnection()){
-            String sql = "update expense set status = ? where emp_id = ?";
+            String sql = "update expense set status = ? where exp_id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, status.toString());
             ps.setInt(2, expense.getExp_id());
 
             ps.executeUpdate();
-//
-//            Expense updateExp = new Expense();
-//            expense.setExp_id(rs.getInt("exp_id"));
-//            expense.setAmount(rs.getDouble("amount"));
-//            expense.setDescription(rs.getString("description"));
-//            expense.setStatus(Status.valueOf(rs.getString("status")));
-//            expense.setCategory(Category.valueOf(rs.getString("category")));
 
             return expense;
 
@@ -167,7 +160,6 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
         catch(SQLException e){
             e.printStackTrace();
             return null;
-
         }
     }
 

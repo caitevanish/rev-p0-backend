@@ -114,9 +114,27 @@ public class ExpenseDAOtests {
         Assertions.assertNotEquals( 100.00, updExpense.getAmount());
     }
 
+    @Test
+    @Order(6)
+    void update_expense_test_approved(){    //
+        Expense updExpense = expenseDAO.getClaimById(5);
+        updExpense.setStatus(Status.APPROVED);
+        expenseDAO.updateClaimInformation(updExpense);
+        Assertions.assertEquals( Status.APPROVED, updExpense.getStatus());
+    }
+
+    @Test
+    @Order(7)
+    void update_expense_test_denied(){    //
+        Expense updExpense = expenseDAO.getClaimById(2);
+        updExpense.setStatus(Status.DENIED);
+        expenseDAO.updateClaimInformation(updExpense);
+        Assertions.assertEquals( Status.DENIED, updExpense.getStatus());
+    }
+
 //    Delete
     @Test   //PASSED
-    @Order(6)
+    @Order(8)
     void delete_expense_test(){
         boolean result = expenseDAO.deleteClaimById(1);
         Assertions.assertTrue(result);

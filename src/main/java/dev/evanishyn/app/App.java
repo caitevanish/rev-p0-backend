@@ -40,14 +40,14 @@ public class App {
         GetClaimByIdHandler getClaimByIdHandler = new GetClaimByIdHandler();
         GetAllClaimsHandler getAllClaimsHandler = new GetAllClaimsHandler();
         GetPendingClaimsHandler getPendingClaimsHandler = new GetPendingClaimsHandler();
-        UpdateClaimById updateClaimById = new UpdateClaimById();
+        UpdateClaimByIdHandler updateClaimByIdHandler = new UpdateClaimByIdHandler();
         DeleteClaimByIdHandler deleteClaimByIdHandler = new DeleteClaimByIdHandler();
 
         app.post("/expenses", createNewClaimHandler);
         app.get("/expenses/{id}", getClaimByIdHandler);
         app.get("/expenses", getAllClaimsHandler);
         app.get("/expenses?status={status}", getPendingClaimsHandler);
-        app.put("/expenses/{id}", updateClaimById);
+        app.put("/expenses/{id}", updateClaimByIdHandler);
         app.delete("/expenses/{id}", deleteClaimByIdHandler);
 
 
