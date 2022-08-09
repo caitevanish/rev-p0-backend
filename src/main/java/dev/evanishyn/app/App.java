@@ -1,6 +1,8 @@
 package dev.evanishyn.app;
 
 import dev.evanishyn.daos.employeeDAOs.EmployeeDAOLocal;
+import dev.evanishyn.daos.employeeDAOs.EmployeeDAOPostgres;
+import dev.evanishyn.daos.expensesDAOs.ExpenseDAOPostgres;
 import dev.evanishyn.daos.expensesDAOs.ExpenseDAOlocal;
 import dev.evanishyn.handlers.employeeHandlers.*;
 import dev.evanishyn.handlers.expenseHandlers.*;
@@ -12,8 +14,8 @@ import io.javalin.Javalin;
 
 public class App {
 
-    public static EmployeeService employeeService = new EmployeeServiceImpl(new EmployeeDAOLocal());
-    public static ExpenseService expenseService = new ExpenseServiceImpl(new ExpenseDAOlocal());
+    public static EmployeeService employeeService = new EmployeeServiceImpl(new EmployeeDAOPostgres());
+    public static ExpenseService expenseService = new ExpenseServiceImpl(new ExpenseDAOPostgres());
 
 
     public static void main(String[] args) {
