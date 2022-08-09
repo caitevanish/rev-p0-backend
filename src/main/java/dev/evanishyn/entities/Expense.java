@@ -38,7 +38,7 @@ public class Expense {
         return emp_Id;
     }
 
-    public void setEmployeeID(Employee employee) {
+    public void setEmployeeID(int emp_Id) {
         this.emp_Id = emp_Id;
     }
 
@@ -78,7 +78,7 @@ public class Expense {
     public String toString() {
         return "Expense{" +
                 "id=" + exp_id +
-                ", employee=" + emp_Id +
+                ", emp_id=" + emp_Id +
                 ", amount=" + amount +
                 ", description='" + description + '\'' +
                 ", type=" + category +

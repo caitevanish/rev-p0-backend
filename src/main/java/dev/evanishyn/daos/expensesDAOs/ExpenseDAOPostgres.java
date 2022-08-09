@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class ExpenseDAOPostgres implements ExpenseDAO{
 
     @Override
@@ -23,12 +24,6 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
             ps.setString(3, expense.getCategory().toString());
             ps.setString(4, expense.getStatus().toString());
             ps.setInt(5, expense.getEmployeeID());
-
-//            ps.setInt(1, expense.getEmployeeID());
-//            ps.setDouble(1, expense.getAmount());
-//            ps.setString(2, expense.getDescription());
-//            ps.setString(3, "OTHER");
-//            ps.setString(4, "PENDING");
 
             ps.execute();
 
@@ -56,20 +51,13 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
 
             while(rs.next()){
                 Expense expense = new Expense();
-                Employee employee = new Employee();
                 expense.setExp_id(rs.getInt("exp_id"));
                 expense.setAmount(rs.getDouble("amount"));
                 expense.setDescription(rs.getString("description"));
-                expense.setStatus(rs.getString("status"));
-
-
-                //trainwreck!
-//                expense.setCategory(Category.valueOf(rs.getString(expense.getCategory().toString())));
-//                expense.setStatus.toString(rs.getString("status"));
-                expense.setCategory(Status.valueOf());
-//                expense.setStatus(Status.valueOf(rs.getString(expense.getStatus().toString())));
-                employee.setEmp_id(rs.getInt("e_id"));
-                expenseList.put(expense.getExp_id(), expense);
+                expense.setStatus(Status.valueOf(rs.getString("status")));
+                expense.setCategory(Category.valueOf(rs.getString("category")));
+                expense.setEmployeeID(rs.getInt("e_id"));
+                expenseList.put(expense.getExp_id(), expense );
             }
             return expenseList;
 
@@ -78,27 +66,62 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
             return null;
         }
     }
-    @Override
-    public Map<Integer, Expense> getPendingClaims(Status status) {
-        try(Connection conn = ConnectionUtil.createConnection()){
-
-
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-            return null;
-    }
 
     @Override
     public Expense getClaimById(int id) {
         try(Connection conn = ConnectionUtil.createConnection()){
+            String sql = "select * from expense where expense.exp_id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
 
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+
+            Expense expense = new Expense();
+            expense.setExp_id(rs.getInt("exp_id"));
+            expense.setAmount(rs.getDouble("amount"));
+            expense.setDescription(rs.getString("description"));
+            expense.setStatus(Status.valueOf(rs.getString("status")));
+            expense.setCategory(Category.valueOf(rs.getString("category")));
+
+            return expense;
 
         }catch(SQLException e){
             e.printStackTrace();
-        }
             return null;
+        }
     }
+
+    @Override
+    public Map<Integer, Expense> getPendingClaims(Status status) {
+        try(Connection conn = ConnectionUtil.createConnection()){
+            String sql = "Select * from expense where expense.status = ? ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "PENDING");
+
+            ResultSet rs = ps.executeQuery();
+//            rs.next();
+
+            Map<Integer, Expense> expenseList = new HashMap<>();
+
+            while(rs.next()){
+                Expense expense = new Expense();
+                expense.setExp_id(rs.getInt("exp_id"));
+                expense.setAmount(rs.getDouble("amount"));
+                expense.setDescription(rs.getString("description"));
+                expense.setStatus(Status.valueOf(rs.getString("status")));
+                expense.setCategory(Category.valueOf(rs.getString("category")));
+                expense.setEmployeeID(rs.getInt("e_id"));
+                expenseList.put(expense.getExp_id(), expense );
+            }
+            return expenseList;
+
+        }catch(SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     @Override
     public Expense updateClaimInformation(Expense expense) {
         try(Connection conn = ConnectionUtil.createConnection()){

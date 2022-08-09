@@ -66,7 +66,7 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     // 1] approve
 //    @Override
 //    public Status updateApproveClaim(Status status){
-//        expenseTable.put(status.(PENDING), status);
+//        expenseTable.put(status.PENDING, status);
 //        return status;
 //    };
 

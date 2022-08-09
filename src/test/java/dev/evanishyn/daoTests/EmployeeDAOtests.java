@@ -49,14 +49,14 @@ public class EmployeeDAOtests {
     //Post
     @Test   //Passed
     @Order(1)
-    void create_employee_test(){    //PASSED
+    void create_employee_test(){
         Employee employee = new Employee(0, "Caitlin", "Evanishyn");
         Employee savedEmployee = employeeDao.createEmployee(employee);
         Assertions.assertNotEquals(0, savedEmployee.getEmp_id());
     }
 
     //Get
-    @Test
+    @Test   //PASSED
     @Order(2)
     void get_all_employees_test(){
         Employee employee1 = new Employee(0, "Moira", "Rose");

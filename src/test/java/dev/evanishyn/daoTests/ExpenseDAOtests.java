@@ -90,6 +90,15 @@ public class ExpenseDAOtests {
         expenseDAO.createClaim(expense4);
 
         Map<Integer,Expense> pendingList = expenseDAO.getPendingClaims(Status.PENDING);
+//        Map<Integer,Expense> pendingList = expenseDAO.getPendingClaims();
+
+        for(Map.Entry<Integer, Expense> e :  pendingList.entrySet())
+            System.out.println("Key = " + e.getKey() + ", Value = " + e.getValue());
+
+        Map<Integer,Expense> expenseList = expenseDAO.getAllClaims();
+        for(Map.Entry<Integer, Expense> e :  expenseList.entrySet())
+            System.out.println("Key = " + e.getKey() + ", Value = " + e.getValue());
+
 
         Assertions.assertEquals(3, pendingList.size());
     }
@@ -105,7 +114,7 @@ public class ExpenseDAOtests {
         Assertions.assertNotEquals( 100.00, updExpense.getAmount());
     }
 
-    //Delete
+//    Delete
     @Test   //PASSED
     @Order(6)
     void delete_expense_test(){
