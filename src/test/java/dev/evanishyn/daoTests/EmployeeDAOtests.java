@@ -17,6 +17,17 @@ import java.util.Map;
 public class EmployeeDAOtests {
 
     @BeforeAll
+    static void teardown(){
+        try(Connection conn = ConnectionUtil.createConnection()){
+            String sql = "drop table employee";
+            Statement statement = conn.createStatement();
+            statement.execute(sql);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @BeforeAll
     static void setup(){
         try(Connection conn = ConnectionUtil.createConnection()) {
             String sql = "create table employee(" +
@@ -32,15 +43,6 @@ public class EmployeeDAOtests {
 
 
 //    @AfterAll
-//    static void teardown(){
-//        try(Connection conn = ConnectionUtil.createConnection()){
-//            String sql = "drop table employee";
-//            Statement statement = conn.createStatement();
-//            statement.execute(sql);
-//        }catch(SQLException e){
-//            e.printStackTrace();
-//        }
-//    }
 
 
     static EmployeeDAO employeeDao = new EmployeeDAOPostgres();

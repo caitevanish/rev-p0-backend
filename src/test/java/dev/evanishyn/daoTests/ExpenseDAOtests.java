@@ -20,7 +20,18 @@ public class ExpenseDAOtests {
     static ExpenseDAO expenseDAO = new ExpenseDAOPostgres();
 
 
-    @BeforeAll  //Passed
+    @BeforeAll
+    static void teardown(){
+        try(Connection conn = ConnectionUtil.createConnection()){
+            String sql = "drop table expense";
+            Statement s = conn.createStatement();
+            s.execute(sql);
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @BeforeAll
     static void setup(){
         try(Connection conn = ConnectionUtil.createConnection()){
             String sql = "create table expense(\n" +
@@ -108,7 +119,7 @@ public class ExpenseDAOtests {
     @Test
     @Order(5)
     void update_expense_test(){    //
-        Expense updExpense = new Expense(0, 1, 50, "Stuff I did stuff", Category.OTHER, Status.DENIED);
+        Expense updExpense = new Expense(0, 1, 50, "Stuff, I did stuff", Category.OTHER, Status.DENIED);    //Status changes to Pending!
         Expense newExpense = expenseDAO.createClaim(updExpense); //creates test
         //gets test as new object
         newExpense.setAmount(500);
@@ -136,11 +147,11 @@ public class ExpenseDAOtests {
     }
 
 //    Delete
-//    @Test   //PASSED
-//    @Order(8)
-//    void delete_expense_test(){
-//        boolean result = expenseDAO.deleteClaimById(1);
-//        Assertions.assertTrue(result);
-//    }
+    @Test   //PASSED
+    @Order(8)
+    void delete_expense_test(){
+        boolean result = expenseDAO.deleteClaimById(1);
+        Assertions.assertTrue(result);
+    }
 
 }
