@@ -20,7 +20,8 @@ public class ExpenseServiceImpl implements ExpenseService {
     //-----------POST-----------
     @Override
     public Expense createNewClaimService(Expense expense) {
-        if (expense.getExp_id() != 0 && expense.getEmployeeID() > 0) {   //Checks for an id
+//        if (expense.getExp_id() != 0 && expense.getEmployeeID() > 0) {   //Checks for an id
+        if (expense.getEmployeeID() > 0) {   //Checks for an id
             if (expense.getAmount() <= 0 || expense.getDescription().length() == 0 || expense.getCategory() == null) {
                 throw new RuntimeException("Make sure you have filled in all fields correctly");
             }
