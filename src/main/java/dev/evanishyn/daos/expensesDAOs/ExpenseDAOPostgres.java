@@ -101,7 +101,6 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
             ps.setString(1, "PENDING");
 
             ResultSet rs = ps.executeQuery();
-//            rs.next();
 
             Map<Integer, Expense> expenseList = new HashMap<>();
 
@@ -126,15 +125,6 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
     @Override
     public Expense updateClaimInformation(Expense expense) {
         try(Connection conn = ConnectionUtil.createConnection()){
-//            String sql = "update expense set exp_id = ?, amount = ?, description = ?, category = ?, status = ? where e_id = ?";
-//            PreparedStatement ps = conn.prepareStatement(sql);
-//            ps.setInt(1, expense.getExp_id());
-//            ps.setDouble(2, expense.getAmount());
-//            ps.setString(3, expense.getDescription());
-//            ps.setString(4, expense.getCategory().toString());
-//            ps.setString(5, expense.getStatus().toString());
-//            ps.setInt(6, expense.getEmployeeID());
-
             String sql = "update expense set amount = ?, description = ?, category = ?, status = ? where exp_id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -159,12 +149,11 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
         try(Connection conn = ConnectionUtil.createConnection()){
             String sql = "update expense set status = ? where exp_id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, status.toString());
+            ps.setString(1, expense.getStatus().toString());
             ps.setInt(2, expense.getExp_id());
 
             ps.executeUpdate();
             return expense;
-//            return getClaimById(exp_id);
 
         }
         catch(SQLException e){

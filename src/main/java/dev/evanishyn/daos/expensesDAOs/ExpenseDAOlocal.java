@@ -79,16 +79,20 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     public Expense updateClaimsStatus(Expense expense, Status status){
 
     Expense pendingExp = expenseTable.get(expense.getExp_id());
+    String newStatus = pendingExp.getStatus().toString();
+
         if (expenseTable.get(pendingExp).equals(null))
     {
         System.out.println("Expense id " + pendingExp.getExp_id() + " not found");
         return null;
+
     }else if (pendingExp.getStatus() == Status.APPROVED || pendingExp.getStatus() == Status.DENIED)
     {
         System.out.println("Cannot edit expense status");
         return null;
+
     } else if (pendingExp.getStatus() == Status.PENDING){
-            pendingExp.setStatus(status);
+            pendingExp.setStatus(Status.valueOf(newStatus));
         return pendingExp;
     } else
     {

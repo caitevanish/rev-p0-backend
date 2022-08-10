@@ -17,7 +17,6 @@ public interface ExpenseDAO {
     // 1] get expense report (aka all expense claims)
     Map<Integer,Expense> getAllClaims();
 
-
     // 2] get all pending claim reimbursements
     Map<Integer,Expense> getPendingClaims(Status status);
 
@@ -32,26 +31,16 @@ public interface ExpenseDAO {
 
 
 //    //-----patch [x2]-----
-    Expense updateClaimsStatus(Expense expense, Status status);
 
 //    // 1] approve
 //    Expense updateApproveClaim();
-//
 //    // 2] deny
 //    Expense updateDenyClaim();
 
+//    Expense updateClaimsStatus(Expense expense);
 
-    // 2] deny
-//    @Override
-//    public Expense updateDenyClaim(Expense expense){
-//        return null;
-//    };
 
-    // 2] deny
-//    @Override
-//    public Expense updateDenyClaim(Expense expense){
-//        return null;
-//    };
+    Expense updateClaimsStatus(Expense expense, Status status);
 
     //-----delete-----
     boolean deleteClaimById(int id);
@@ -65,6 +54,7 @@ public interface ExpenseDAO {
 
     //-----post-----
     // returns expenses for employee 120
+
 
 
     //-----get-----

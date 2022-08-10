@@ -65,15 +65,30 @@ public class ExpenseServiceImpl implements ExpenseService {
 //    public Expense updateApproveClaim(){
 //        return null;
 //    }
-//
 //    // 2] deny
 //    @Override
 //    public Expense updateDenyClaim(){
 //        return null;
 //    }
 
-//    @Override
-//    public Expense
+    @Override
+    //THIS IS A CHANGE MADE IN THE SERVICES BRANCH
+    public Expense updateClaimsStatus(Expense expense){
+        return this.expenseDAO.updateClaimsStatus(expense, Status.valueOf(expense.getStatus().toString()));
+//        return this.expenseDAO.getClaimById(expense.getExp_id());
+//        if(pendingExpense != null){    //checks that there's an expense
+////            if(expense.getStatus() == Status.PENDING){
+////                if(status == Status.APPROVED){
+////                    expense.setStatus(Status.APPROVED);
+////                } else if(status == Status.DENIED){
+////                    expense.setStatus(Status.DENIED);
+////                }
+////                return this.expenseDAO.updateClaimsStatus(pendingExpense.getExp_id(), pendingExpense.getStatus().toString());
+//                return this.expenseDAO.updateClaimsStatus(pendingExpense.getExp_id(), pendingExpense.getStatus().toString());
+//            }
+//            return null;
+        }
+
 
                 //-----delete-----
     @Override
