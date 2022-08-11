@@ -32,7 +32,7 @@ public interface ExpenseService {
 //    // 2] deny
 //    Expense updateDenyClaim();
 
-    Expense updateClaimsStatus(Expense expense);
+    Expense updateClaimsStatus(Expense expense, Status status);
 
 
     //-----delete-----

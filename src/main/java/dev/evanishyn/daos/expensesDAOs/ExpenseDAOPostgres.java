@@ -149,7 +149,7 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
         try(Connection conn = ConnectionUtil.createConnection()){
             String sql = "update expense set status = ? where exp_id = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, expense.getStatus().toString());
+            ps.setString(1, status.name());
             ps.setInt(2, expense.getExp_id());
 
             ps.executeUpdate();

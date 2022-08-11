@@ -72,9 +72,10 @@ public class ExpenseServiceImpl implements ExpenseService {
 //    }
 
     @Override
-    //THIS IS A CHANGE MADE IN THE SERVICES BRANCH
-    public Expense updateClaimsStatus(Expense expense){
-        return this.expenseDAO.updateClaimsStatus(expense, Status.valueOf(expense.getStatus().toString()));
+    public Expense updateClaimsStatus(Expense expense, Status status){
+        return this.expenseDAO.updateClaimsStatus(expense, status);
+
+
 //        return this.expenseDAO.getClaimById(expense.getExp_id());
 //        if(pendingExpense != null){    //checks that there's an expense
 ////            if(expense.getStatus() == Status.PENDING){

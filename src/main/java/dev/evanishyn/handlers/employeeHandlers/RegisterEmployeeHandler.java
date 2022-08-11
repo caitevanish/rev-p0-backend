@@ -14,8 +14,8 @@ public class RegisterEmployeeHandler implements Handler {
         String json = ctx.body();       //creates json object and fills with body(?)
         Gson gson = new Gson();         //Instantiate a gson object (converts to json)
         Employee employee = gson.fromJson(json, Employee.class);    //create employee object; json -> gson
-        Employee registeredEmployee = App.employeeService.registerEmployeeAccount(employee);    //create registered employee from app
-        String employeeJson = gson.toJson(registeredEmployee);  //create json string from regEmp info
+//        Employee registeredEmployee = App.employeeService.registerEmployeeAccount(employee);    //create registered employee from app
+        String employeeJson = gson.toJson(App.employeeService.registerEmployeeAccount(employee));  //create json string from regEmp info
         ctx.status(201);        //checking for a 201 status
         ctx.result(employeeJson);       //returning employee Json string to page
 
