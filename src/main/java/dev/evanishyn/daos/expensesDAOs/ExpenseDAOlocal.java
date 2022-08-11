@@ -64,17 +64,8 @@ public class ExpenseDAOlocal implements ExpenseDAO{
 
     //-----------PATCH-----------
     // 1] approve
-//    @Override
-//    public Status updateApproveClaim(Status status){
-//        expenseTable.put(status.PENDING, status);
-//        return status;
-//    };
-
     // 2] deny
-//    @Override
-//    public Expense updateDenyClaim(Expense expense){
-//        return null;
-//    };
+
     @Override
     public Expense updateClaimsStatus(Expense expense, Status status){
 
@@ -102,13 +93,26 @@ public class ExpenseDAOlocal implements ExpenseDAO{
 }
 
 
-
     //-----------DELETE-----------
     @Override
     public boolean deleteClaimById(int id){
         Expense expense = expenseTable.remove(id);
         return expense != null;
     }
+
+
+    //===================================
+    //-----------Nested Routes-----------
+    //===================================
+
+
+    //-----post-----
+    // returns expenses for employee 120
+
+
+
+    //-----get-----
+    //adds an expense to employee 120
 
 }
 

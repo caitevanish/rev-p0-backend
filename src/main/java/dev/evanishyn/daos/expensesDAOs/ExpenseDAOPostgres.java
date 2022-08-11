@@ -175,4 +175,18 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
             return false;
         }
     }
+
+    //===================================
+    //-----------Nested Routes-----------
+    //===================================
+
+    //-----post-----
+    // returns expenses for employee 120
+
+
+
+    //-----get-----
+    //adds an expense to employee 120
+
+
 }

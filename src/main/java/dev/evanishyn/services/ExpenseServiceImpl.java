@@ -58,19 +58,9 @@ public class ExpenseServiceImpl implements ExpenseService {
         return this.expenseDAO.updateClaimInformation(expense);
     }
 
-
-//    //-----patch [x2]-----
-//    // 1] approve
-//    @Override
-//    public Expense updateApproveClaim(){
-//        return null;
-//    }
-//    // 2] deny
-//    @Override
-//    public Expense updateDenyClaim(){
-//        return null;
-//    }
-
+    //-----patch [x2]-----
+    // 1] approve
+    // 2] deny
     @Override
     public Expense updateClaimsStatus(Expense expense, Status status){
         return this.expenseDAO.updateClaimsStatus(expense, status);
@@ -91,11 +81,23 @@ public class ExpenseServiceImpl implements ExpenseService {
         }
 
 
-                //-----delete-----
+    //-----delete-----
     @Override
     public boolean deleteClaimById(int id){
         return this.expenseDAO.deleteClaimById(id);
     }
+
+    //===================================
+    //-----------Nested Routes-----------
+    //===================================
+
+    //-----post-----
+    // returns expenses for employee 120
+
+
+
+    //-----get-----
+    //adds an expense to employee 120
 
 
 }

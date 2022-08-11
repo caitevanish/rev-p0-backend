@@ -31,16 +31,10 @@ public interface ExpenseDAO {
 
 
 //    //-----patch [x2]-----
+    Expense updateClaimsStatus(Expense expense, Status status);
 
 //    // 1] approve
-//    Expense updateApproveClaim();
 //    // 2] deny
-//    Expense updateDenyClaim();
-
-//    Expense updateClaimsStatus(Expense expense);
-
-
-    Expense updateClaimsStatus(Expense expense, Status status);
 
     //-----delete-----
     boolean deleteClaimById(int id);

@@ -26,17 +26,26 @@ public interface ExpenseService {
     Expense updateClaimInformation(Expense expense);
 
 
-//    //-----patch [x2]-----
-//    // 1] approve
-//    Expense updateApproveClaim();
-//    // 2] deny
-//    Expense updateDenyClaim();
-
+     //-----patch [x2]-----
+    // 1] approve
+    // 2] deny
     Expense updateClaimsStatus(Expense expense, Status status);
 
 
     //-----delete-----
     boolean deleteClaimById(int id);
+
+    //===================================
+    //-----------Nested Routes-----------
+    //===================================
+
+    //-----post-----
+    // returns expenses for employee 120
+
+
+
+    //-----get-----
+    //adds an expense to employee 120
 
 
 }
