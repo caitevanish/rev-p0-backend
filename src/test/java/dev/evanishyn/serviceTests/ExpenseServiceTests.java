@@ -9,6 +9,7 @@ import dev.evanishyn.utilities.Category;
 import dev.evanishyn.utilities.Status;
 import org.junit.jupiter.api.*;
 
+import java.util.List;
 import java.util.Map;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -36,7 +37,7 @@ public class ExpenseServiceTests {
         expenseService.createNewClaimService(expense1);
         expenseService.createNewClaimService(expense2);
 
-        Map<Integer,Expense> expenseList = expenseService.getAllClaims();
+        List<Expense> expenseList = expenseService.getAllClaims();
         Assertions.assertEquals(3, expenseList.size());
     }
 
@@ -56,7 +57,7 @@ public class ExpenseServiceTests {
         expenseDAO.createClaim(expense3);
         expenseDAO.createClaim(expense4);
 
-        Map<Integer,Expense> pendingList = expenseDAO.getPendingClaims(Status.PENDING);
+        List<Expense> pendingList = expenseDAO.getPendingClaims(Status.PENDING);
 
         Assertions.assertEquals(3, pendingList.size());
     }

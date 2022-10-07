@@ -3,6 +3,7 @@ package dev.evanishyn.services;
 import dev.evanishyn.daos.employeeDAOs.EmployeeDAO;
 import dev.evanishyn.entities.Employee;
 
+import java.util.List;
 import java.util.Map;
 
 //---------------------------------------------------------------------------------------
@@ -13,7 +14,7 @@ import java.util.Map;
 
 public class EmployeeServiceImpl implements EmployeeService{
 
-    private EmployeeDAO employeeDAO;
+    private final EmployeeDAO employeeDAO;
 
     public EmployeeServiceImpl(EmployeeDAO employeeDAO){
         this.employeeDAO = employeeDAO;
@@ -42,7 +43,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public Map<Integer, Employee> getEmployeeList(){
+    public List<Employee> getEmployeeList(){
         return employeeDAO.getEmployeeList();
     }
 

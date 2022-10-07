@@ -3,10 +3,12 @@ package dev.evanishyn.serviceTests;
 import dev.evanishyn.daos.employeeDAOs.EmployeeDAO;
 import dev.evanishyn.daos.employeeDAOs.EmployeeDAOLocal;
 import dev.evanishyn.entities.Employee;
+import dev.evanishyn.entities.Expense;
 import dev.evanishyn.services.EmployeeService;
 import dev.evanishyn.services.EmployeeServiceImpl;
 import org.junit.jupiter.api.*;
 
+import java.util.List;
 import java.util.Map;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -47,7 +49,7 @@ public class EmployeeServiceTest {
         employeeService.registerEmployeeAccount(employee2);
         employeeService.registerEmployeeAccount(employee3);
 
-        Map<Integer, Employee>employeeList = employeeService.getEmployeeList();
+        List<Employee>  employeeList = employeeService.getEmployeeList();
         Assertions.assertEquals(5,employeeList.size());
     }
 

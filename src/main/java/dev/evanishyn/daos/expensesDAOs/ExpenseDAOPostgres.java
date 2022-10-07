@@ -7,7 +7,9 @@ import dev.evanishyn.utilities.ConnectionUtil;
 import dev.evanishyn.utilities.Status;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -37,18 +39,19 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
 
         }catch(SQLException e){
             e.printStackTrace();
-        return null;
         }
+        return null;
     }
 
     @Override
-    public Map<Integer, Expense> getAllClaims() {
+    public List<Expense> getAllClaims() {
         try(Connection conn = ConnectionUtil.createConnection()){
+
             String sql = "select * from expense";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
-            Map<Integer, Expense> expenseList = new HashMap<>();
+            List<Expense> expenseList = new ArrayList<>();
 
             while(rs.next()){
                 Expense expense = new Expense();
@@ -58,14 +61,14 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
                 expense.setStatus(Status.valueOf(rs.getString("status")));
                 expense.setCategory(Category.valueOf(rs.getString("category")));
                 expense.setEmployeeID(rs.getInt("e_id"));
-                expenseList.put(expense.getExp_id(), expense );
+                expenseList.add(expense);
             }
             return expenseList;
 
         }catch(SQLException e){
             e.printStackTrace();
-            return null;
         }
+            return null;
     }
 
     @Override
@@ -94,7 +97,7 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
     }
 
     @Override
-    public Map<Integer, Expense> getPendingClaims(Status status) {
+    public List<Expense> getPendingClaims(Status status) {
         try(Connection conn = ConnectionUtil.createConnection()){
             String sql = "Select * from expense where expense.status = ? ";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -102,7 +105,7 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
 
             ResultSet rs = ps.executeQuery();
 
-            Map<Integer, Expense> expenseList = new HashMap<>();
+            List<Expense> expenseList = new ArrayList<>();
 
             while(rs.next()){
                 Expense expense = new Expense();
@@ -112,7 +115,7 @@ public class ExpenseDAOPostgres implements ExpenseDAO{
                 expense.setStatus(Status.valueOf(rs.getString("status")));
                 expense.setCategory(Category.valueOf(rs.getString("category")));
                 expense.setEmployeeID(rs.getInt("e_id"));
-                expenseList.put(expense.getExp_id(), expense );
+                expenseList.add(expense.getExp_id(), expense );
             }
             return expenseList;
 

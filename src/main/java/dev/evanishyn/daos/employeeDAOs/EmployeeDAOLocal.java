@@ -2,12 +2,14 @@ package dev.evanishyn.daos.employeeDAOs;
 
 import dev.evanishyn.entities.Employee;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EmployeeDAOLocal implements EmployeeDAO{
 
-    private Map<Integer, Employee> employeeTable = new HashMap<>();
+    private final Map<Integer, Employee> employeeTable = new HashMap<>();
     private int idMaker = 1;
 
 
@@ -29,9 +31,8 @@ public class EmployeeDAOLocal implements EmployeeDAO{
 
     //-----------GET-----------
     @Override
-    public Map<Integer,Employee> getEmployeeList() {
-        //why returning null? Doesn't it return ListArray of all employees?
-        return this.employeeTable;
+    public List<Employee> getEmployeeList() {
+        return new ArrayList<>(employeeTable.values());
     }
 
     @Override

@@ -11,11 +11,11 @@ import org.junit.jupiter.api.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Map;
+import java.util.List;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
-public class ExpenseDAOtests {
+public class ExpenseDaoTests {
 
     static ExpenseDAO expenseDAO = new ExpenseDAOPostgres();
 
@@ -81,7 +81,7 @@ public class ExpenseDAOtests {
         expenseDAO.createClaim(expense1);
         expenseDAO.createClaim(expense2);
 
-        Map<Integer,Expense> expenseList = expenseDAO.getAllClaims();
+        List<Expense> expenseList = expenseDAO.getAllClaims();
         Assertions.assertEquals(3, expenseList.size());
     }
 
@@ -101,14 +101,11 @@ public class ExpenseDAOtests {
         expenseDAO.createClaim(expense3);
         expenseDAO.createClaim(expense4);
 
-        Map<Integer,Expense> pendingList = expenseDAO.getPendingClaims(Status.PENDING);
+        List<Expense> pendingList = expenseDAO.getPendingClaims(Status.PENDING);
 
-//        for(Map.Entry<Integer, Expense> e :  pendingList.entrySet())
+//        List<Expense> expenseList = expenseDAO.getAllClaims();
+//        for(Expense e :  expenseList)
 //            System.out.println("Key = " + e.getKey() + ", Value = " + e.getValue());
-
-        Map<Integer,Expense> expenseList = expenseDAO.getAllClaims();
-        for(Map.Entry<Integer, Expense> e :  expenseList.entrySet())
-            System.out.println("Key = " + e.getKey() + ", Value = " + e.getValue());
 
 
         Assertions.assertEquals(5, pendingList.size());

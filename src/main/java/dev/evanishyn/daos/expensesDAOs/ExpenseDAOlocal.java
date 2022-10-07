@@ -4,13 +4,15 @@ package dev.evanishyn.daos.expensesDAOs;
 import dev.evanishyn.entities.Expense;
 import dev.evanishyn.utilities.Status;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ExpenseDAOlocal implements ExpenseDAO{
 
     ExpenseDAO expenseDAO;
-    private Map<Integer, Expense> expenseTable = new HashMap<>();
+    private final Map<Integer, Expense> expenseTable = new HashMap<>();
     private int idMaker = 1;
 
     //-----------POST-----------
@@ -28,20 +30,20 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     //-----------GET-----------
     // 1] get expense report (aka all expense claims)
     @Override
-    public Map<Integer,Expense> getAllClaims(){
-        return expenseTable;
+    public List<Expense> getAllClaims(){
+        return new ArrayList<>(expenseTable.values());
     }
 
 
     // 2] get all pending claim reimbursements
     @Override
-    public Map<Integer,Expense> getPendingClaims(Status status){
-        Map<Integer, Expense> allClaims = this.getAllClaims();
-        Map<Integer, Expense> pendingClaims = new HashMap<>();
+    public List<Expense> getPendingClaims(Status status){
+        List<Expense> allClaims = new ArrayList<>(expenseTable.values());
+        List<Expense> pendingClaims = new ArrayList<>();
 
-        for(Expense expense : allClaims.values()){
+        for(Expense expense : allClaims){
             if(expense.getStatus().equals(status.PENDING)){
-                pendingClaims.put(expense.getExp_id(), expense);
+                pendingClaims.add(expense.getExp_id(), expense);
             }
         }
         return pendingClaims;
@@ -59,7 +61,7 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     @Override
     public Expense updateClaimInformation(Expense expense){
         expenseTable.put(expense.getExp_id(), expense);
-        return expense;
+        return expenseTable.get(expense.getExp_id());
     }
 
     //-----------PATCH-----------
@@ -72,7 +74,7 @@ public class ExpenseDAOlocal implements ExpenseDAO{
     Expense pendingExp = expenseTable.get(expense.getExp_id());
     String newStatus = pendingExp.getStatus().toString();
 
-        if (expenseTable.get(pendingExp).equals(null))
+        if (expenseTable.get(pendingExp.getExp_id()).equals(null))
     {
         System.out.println("Expense id " + pendingExp.getExp_id() + " not found");
         return null;

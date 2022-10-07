@@ -17,7 +17,9 @@ public class App {
 
 
     public static void main(String[] args) {
-        Javalin app = Javalin.create();
+            Javalin app = Javalin.create();
+
+
         //Add a 'try'-with statement
 
 
@@ -30,7 +32,7 @@ public class App {
 
         app.post("/employee", registerEmployeeHandler);
         app.get("/employee/{id}", getEmployeeByIdHandler);
-        app.get("/employees", getEmployeeListHandler);
+        app.get("/employee", getEmployeeListHandler);
         app.put("/employee", updateEmployeeHandler);
         app.delete("/employee/{id}", deleteEmployeeHandler);
 
@@ -55,7 +57,11 @@ public class App {
         //-----------Nested Routes-----------
 
 
+//        app.get("/employees/{id}/expenses", null);
+//        app.post("/employees/{1d}/expenses", null);
+
 
         app.start();
+
     }
 }

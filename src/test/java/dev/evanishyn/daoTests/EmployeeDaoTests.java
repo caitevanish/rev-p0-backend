@@ -9,12 +9,12 @@ import org.junit.jupiter.api.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Map;
+import java.util.List;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
-public class EmployeeDAOtests {
+public class EmployeeDaoTests {
 
     @BeforeAll
     static void teardown(){
@@ -69,7 +69,7 @@ public class EmployeeDAOtests {
         employeeDao.createEmployee(employee2);
         employeeDao.createEmployee(employee3);
 
-        Map<Integer, Employee> employeeList = employeeDao.getEmployeeList();
+        List<Employee> employeeList = employeeDao.getEmployeeList();
 
         Assertions.assertEquals(4,employeeList.size());
     }

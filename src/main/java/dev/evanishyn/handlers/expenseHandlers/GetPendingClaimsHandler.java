@@ -8,6 +8,7 @@ import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Map;
 
 public class GetPendingClaimsHandler implements Handler {
@@ -15,7 +16,7 @@ public class GetPendingClaimsHandler implements Handler {
     @Override
     public void handle(@NotNull Context ctx) throws Exception{
 
-        Map<Integer,Expense> pendingList= App.expenseService.getPendingClaims(Status.PENDING);
+        List<Expense> pendingList= App.expenseService.getPendingClaims(Status.PENDING);
 
         Gson gson = new Gson();
         String json = gson.toJson(pendingList);

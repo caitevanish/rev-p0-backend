@@ -4,13 +4,14 @@ import dev.evanishyn.daos.expensesDAOs.ExpenseDAO;
 import dev.evanishyn.entities.Expense;
 import dev.evanishyn.utilities.Status;
 
+import java.util.List;
 import java.util.Map;
 
 
 
 public class ExpenseServiceImpl implements ExpenseService {
 
-    private ExpenseDAO expenseDAO;
+    private final ExpenseDAO expenseDAO;
 
 
     public ExpenseServiceImpl(ExpenseDAO expenseDAO) {
@@ -33,13 +34,13 @@ public class ExpenseServiceImpl implements ExpenseService {
     // 1] get expense report (aka all expense claims)
 
     @Override
-    public Map<Integer, Expense> getAllClaims(){
+    public List<Expense> getAllClaims(){
         return expenseDAO.getAllClaims();
     }
 
     // 2] get all pending claim reimbursements
     @Override
-    public Map<Integer, Expense> getPendingClaims(Status status){
+    public List<Expense> getPendingClaims(Status status){
         return expenseDAO.getPendingClaims(status);
     }
 

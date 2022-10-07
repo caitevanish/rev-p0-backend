@@ -4,7 +4,9 @@ import dev.evanishyn.entities.Employee;
 import dev.evanishyn.utilities.ConnectionUtil;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EmployeeDAOPostgres implements EmployeeDAO{
@@ -57,20 +59,20 @@ public class EmployeeDAOPostgres implements EmployeeDAO{
     }
 
     @Override
-    public Map<Integer, Employee> getEmployeeList() {
+    public List<Employee> getEmployeeList() {
         try(Connection conn = ConnectionUtil.createConnection()){
             String sql = "select * from employee";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
-            Map<Integer, Employee> employeeList = new HashMap<>();
+            List<Employee> employeeList = new ArrayList<>();
 
             while(rs.next()){
                 Employee employee = new Employee();
                 employee.setEmp_id(rs.getInt("emp_id"));
                 employee.setfName(rs.getString("fname"));
                 employee.setlName(rs.getString("lname"));
-                employeeList.put(employee.getEmp_id(), employee);
+                employeeList.add(employee.getEmp_id(), employee);
             }
             return employeeList;
         }catch(SQLException e){
